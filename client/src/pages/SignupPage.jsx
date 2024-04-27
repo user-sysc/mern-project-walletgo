@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
-import axios from "axios";
+import Swal from "sweetalert2";
 import "../styles/styles.css";
+import axios from "axios";
 
 function SignupPage() {
+  // const history = useHistory();
+
   const registerUser = async (e) => {
     e.preventDefault();
     const name = document.getElementById("name");
@@ -10,7 +13,10 @@ function SignupPage() {
     const password = document.getElementById("password");
 
     if (!name.value || !email.value || !password.value) {
-      alert("Todos los campos son obligatorios");
+      Swal.fire({
+        title: "<strong>Todos los campos son obligatorios</strong>",
+        icon: "warning",
+      });
       return;
     }
 
@@ -19,7 +25,11 @@ function SignupPage() {
       .then((response) => response.data);
 
     if (userExists) {
-      alert("El usuario ya está registrado");
+      Swal.fire({
+        title: "<strong>¡Registro existente!</strong>",
+        html: "<i>El usuario" + { name } + " ya se encuentra registrado</i>",
+        icon: "warning",
+      });
       return;
     }
 
@@ -34,6 +44,12 @@ function SignupPage() {
         name.value = "";
         email.value = "";
         password.value = "";
+        Swal.fire({
+          title: "<strong>Registro exitoso!!</strong>",
+          html: "<i>El usuario" + { name } + " fue registrado con éxito</i>",
+          icon: "success",
+        });
+        // history.push("/Login"); //nos redirige a la pagina de login
       });
   };
 

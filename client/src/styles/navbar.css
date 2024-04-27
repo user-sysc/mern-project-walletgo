@@ -62,6 +62,9 @@ li {
 .nav-links li:hover{
   color: #25b244;
 }
+/* .active {
+  color: #25b244;
+} */
 .hero {
   text-align: center;
   /* margin-top: 15%; */
