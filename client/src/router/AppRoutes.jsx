@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
+import Contact from "../components/Contact.jsx";
 import SignupPage from "../pages/SignupPage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
 import NavBar from "../components/NavBar.jsx";
@@ -17,6 +18,7 @@ function AppRoutes() {
             <>
               <NavBar />
               <Home />
+              <Contact />
               <Footer />
             </>
           }

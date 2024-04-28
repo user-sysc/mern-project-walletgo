@@ -1,13 +1,8 @@
-import ejemplo from "../assets/ejemplo.jpg";
 import "../styles/Contact.css";
 
 function Contact() {
   return (
-    <div className="contact">
-      <div
-        className="leftSide"
-        style={{ backgroundImage: `url(${ejemplo.jpg})` }}
-      ></div>
+    <div className="contact" id="contact">
       <div className="rightSide">
         <h1 className="h1-contact"> Contact Us</h1>
         <form className="contact-form" method="POST">
