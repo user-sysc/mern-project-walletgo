@@ -1,11 +1,10 @@
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../styles/styles.css";
 import axios from "axios";
 
 function SignupPage() {
-  // const history = useHistory();
-
   const registerUser = async (e) => {
     e.preventDefault();
     const name = document.getElementById("name");
@@ -14,8 +13,11 @@ function SignupPage() {
 
     if (!name.value || !email.value || !password.value) {
       Swal.fire({
-        title: "<strong>Todos los campos son obligatorios</strong>",
+        title:
+          '<strong style="color: white;">Todos los campos son obligatorios</strong>',
         icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
       });
       return;
     }
@@ -26,9 +28,11 @@ function SignupPage() {
 
     if (userExists) {
       Swal.fire({
-        title: "<strong>¡Registro existente!</strong>",
-        html: "<i>El usuario" + { name } + " ya se encuentra registrado</i>",
+        title: '<strong style="color: white;">¡Registro existente!</strong>',
+        html: '<i style="color: white;">El usuario ya se encuentra registrado</i>',
         icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
       });
       return;
     }
@@ -40,22 +44,25 @@ function SignupPage() {
         password: password.value,
       })
       .then(() => {
-        alert("usuario registrado");
         name.value = "";
         email.value = "";
         password.value = "";
         Swal.fire({
-          title: "<strong>Registro exitoso!!</strong>",
-          html: "<i>El usuario" + { name } + " fue registrado con éxito</i>",
+          title: '<strong style="color: white;">Registro exitoso!!</strong>',
+          html: '<i style="color: white;">El usuario fue registrado con éxito</i>',
           icon: "success",
+          background: "#12151E",
+          confirmButtonColor: "#1DB13E",
         });
-        // history.push("/Login"); //nos redirige a la pagina de login
       });
   };
 
   return (
     <section>
-      <h2>Registro</h2>
+      <Link to="/" className="logout-icon">
+        <RiLogoutBoxLine size={30} color="#1DB13E" />
+      </Link>
+      <h2>Signup</h2>
       <form id="signupForm">
         <label>Nombre</label>
         <input type="text" placeholder="..." id="name" required />
@@ -63,7 +70,7 @@ function SignupPage() {
         <input type="email" placeholder="..." id="email" required />
         <label>Contraseña</label>
         <input type="password" placeholder="..." id="password" required />
-        <input onClick={registerUser} type="submit" value="Registro" />
+        <input onClick={registerUser} type="submit" value="Registrar" />
       </form>
       <p>
         Ya tienes una cuenta? <Link to="/Login">Login</Link>

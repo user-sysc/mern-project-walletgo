@@ -23,7 +23,7 @@ function Footer() {
           <BiLogoTwitter />
         </a>
         <a
-          href="https://www.facebook.com/tu_usuario_facebook"
+          href="https://www.facebook.com/"
           target="_blank"
           rel="noopener noreferrer"
         >

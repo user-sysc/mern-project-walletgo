@@ -16,11 +16,13 @@ inputs: '#212F3C'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-color: #1b1f27 #12151e;
+  scrollbar-width: thin;
 }
 
 body {
   font-family: var(--font-mono);
-  background-color: #12161c;
+  background-color: #12161c
 }
 
 section {
@@ -110,4 +112,9 @@ section button {
   border-radius: 9px;
   margin-top: 1.5em;
   font-size: 1em;
+}
+.logout-icon{
+  position: absolute;
+  top: 20px; 
+  left: 15px; 
 }
