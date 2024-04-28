@@ -105,6 +105,7 @@ button {
     transition: all 0.5s ease-in-out;
     width: 100%;
     background-color: #12161c;
+    cursor: pointer;
   }
   ul li {
     padding: 32px;
@@ -118,6 +119,7 @@ button {
     display: block;
     right: 20px;
     color: white;
+    cursor: pointer;
   }
   .hero h1 {
     font-size: 50px;
