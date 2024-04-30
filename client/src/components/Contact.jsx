@@ -14,6 +14,7 @@ function Contact() {
             name="name"
             placeholder="..."
             type="text"
+            required
           />
           <label className="label-contact" htmlFor="email">
             Email
@@ -23,6 +24,7 @@ function Contact() {
             name="email"
             placeholder="..."
             type="email"
+            required
           />
           <label className="label-contact" htmlFor="message">
             Message
