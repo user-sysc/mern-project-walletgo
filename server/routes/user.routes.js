@@ -1,82 +1,27 @@
-import db from "../database/connection.js";
-import express from "express";
+import { Router } from "express";
+import * as UserController from "../controllers/user.controller.js";
 
-//IMPLEMENTACIÓN DE TODAS LAS RUTAS RELACIONADAS CON USERS
+const router = Router();
 
-const router = express.Router();
-// Este objeto tiene métodos para las rutas de manejo de solicitudes HTTP como get, post, put, delete.
+// Configura el router para manejar una solicitud GET a la ruta '/usuarios'
+// Cuando se recibe una solicitud a esta ruta, se llama a la función getUsuarios
+router.get("/usuarios", UserController.getUsuarios);
 
-// Endpoint para crear un nuevo usuario
-// Este endpoint recibe un nombre, correo electrónico y contraseña en el cuerpo de la solicitud
-// Luego inserta estos datos en la tabla de usuarios en la base de datos
-router.post("/create", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
+// Configura el router para manejar una solicitud GET a la ruta '/usuarios/:email'
+// Cuando se recibe una solicitud a esta ruta, se llama a la función getUsuario
+router.get("/usuarios/:email", UserController.getUserByEmail);
 
-  db.query(
-    "INSERT INTO usuarios(name, email, password) VALUES(?,?,?)",
-    [name, email, password],
-    (err, result) => {
-      if (err) {
-        console.log(err.message);
-      } else {
-        res.send("usuario registrado con exito");
-      }
-    }
-  );
-});
+// Configura el router para manejar una solicitud POST a la ruta '/usuarios'
+// Cuando se recibe una solicitud a esta ruta, se llama a la función createUsuario
+router.post("/usuarios", UserController.createUsuario);
 
-// Endpoint para verificar si un usuario existe
-// Este endpoint recibe un correo electrónico como parámetro de consulta
-// Luego busca en la tabla de usuarios en la base de datos si existe un usuario con ese correo electrónico
-router.get("/userExists", (req, res) => {
-  const email = req.query.email;
+// Configura el router para manejar una solicitud PUT a la ruta '/usuarios/:idUsuario'
+// Cuando se recibe una solicitud a esta ruta, se llama a la función updateUsuario
+router.put("/usuarios/:idUsuario", UserController.updateUsuario);
 
-  db.query("SELECT * FROM usuarios WHERE email = ?", [email], (err, result) => {
-    if (err) {
-      console.log(err.message);
-      res.send(false);
-    } else {
-      if (result.length > 0) {
-        res.send(true);
-      } else {
-        res.send(false);
-      }
-    }
-  });
-});
+// Configura el router para manejar una solicitud DELETE a la ruta '/usuarios/:idUsuario'
+// Cuando se recibe una solicitud a esta ruta, se llama a la función deleteUsuario
+router.delete("/usuarios/:idUsuario", UserController.deleteUsuario);
 
-// Endpoint para iniciar sesión
-// Este endpoint recibe un correo electrónico y una contraseña en el cuerpo de la solicitud
-// Luego busca en la tabla de usuarios en la base de datos si existe un usuario con ese correo electrónico y contraseña
-router.post("/login", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  db.query(
-    "SELECT * FROM usuarios WHERE email = ? AND password = ?",
-    [email, password],
-    (err, result) => {
-      if (err) {
-        console.log(err.message);
-        res
-          .status(500)
-          .json({ success: false, message: "Error al iniciar sesión" });
-      } else {
-        if (result.length > 0) {
-          res
-            .status(200)
-            .json({ success: true, message: "Inicio de sesión exitoso" });
-        } else {
-          res.status(400).json({
-            success: false,
-            message: "Usuario no encontrado o contraseña incorrecta",
-          });
-        }
-      }
-    }
-  );
-});
-
+// Exportamos para que pueda ser utilizado en otros archivos
 export default router;

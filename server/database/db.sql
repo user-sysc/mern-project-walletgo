@@ -16,7 +16,9 @@ CREATE TABLE incomes (
     description VARCHAR(300) NULL,
     createdAT TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    category_id INTEGER,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 --CREATE TABLE EGRESOS
 CREATE TABLE expenses (
@@ -26,7 +28,9 @@ CREATE TABLE expenses (
     description VARCHAR(300) NULL,
     createdAT TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL,
+    category_id INTEGER,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 --CREATE TABLE CATEGORIAS
 CREATE TABLE categories (
@@ -34,3 +38,12 @@ CREATE TABLE categories (
     name_category VARCHAR(200) NOT NULL,
     createdAT TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ALTER TABLE incomes
+-- ADD COLUMN category_id INTEGER,
+-- ADD FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL;
+
+-- ALTER TABLE expenses
+-- ADD COLUMN category_id INTEGER,
+-- ADD FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL;
+

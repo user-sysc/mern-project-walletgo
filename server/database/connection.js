@@ -1,10 +1,19 @@
-import mysql from "mysql";
+import Sequelize from "sequelize";
 
-const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "walletgo_db"
-}); 
+const sequelize = new Sequelize("walletgo_db", "root", "", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
-export default db;
+export default sequelize;
+
+// import mysql from "mysql";
+
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "walletgo_db",
+// });
+
+// export default db;

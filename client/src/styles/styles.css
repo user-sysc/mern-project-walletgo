@@ -79,7 +79,7 @@ section form input {
 }
 
 section form input[type="submit"] {
-  margin-top: 1.5em;
+  margin-top: 0.5em;
   background-color: #25b244;
   color: #fff;
   font-family: var(--font-mono);
@@ -117,4 +117,22 @@ section button {
   position: absolute;
   top: 20px; 
   left: 15px; 
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.password-container input {
+  padding-right: 10px; 
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 38%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
