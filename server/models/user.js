@@ -25,24 +25,3 @@ export const Usuario = sequelize.define(
     timestamps: false,
   }
 );
-
-// import db from "../database/connection.js";
-
-// export function createUser(userDto) {
-//   db.query("INSERT INTO usuarios(name, email, password) VALUES(?,?,?)", [
-//     userDto.name,
-//     userDto.email,
-//     userDto.password,
-//   ]);
-// }
-
-// export function userExists(email) {
-//   db.query("SELECT * FROM usuarios WHERE email = ?", [email]);
-// }
-
-// export function loginUser(userDto) {
-//   db.query("SELECT * FROM usuarios WHERE email = ? AND password = ?", [
-//     userDto.email,
-//     userDto.password,
-//   ]);
-// }

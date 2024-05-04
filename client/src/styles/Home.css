@@ -1,0 +1,29 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .hero {
+    text-align: center;
+  }
+  
+  .hero-title {
+    font-size: 2.5em;
+    color: white;
+  }
+
+  .hero-title .go {
+    color: #25b244;
+  }
+  
+  
+  .hero-description {
+    font-size: 1.2em;
+    color: white;
+    margin-top: 30px;
+    max-width: 75%; /* Limita el ancho de la descripción al 60% del ancho del contenedor */
+  }

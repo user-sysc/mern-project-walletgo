@@ -10,7 +10,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <h3 className="logo">
-          Wallet GO
+          WalletGO
           <FaWallet color="#25b244" className="wallet-icon"></FaWallet>
         </h3>
         <ul

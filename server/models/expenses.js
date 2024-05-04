@@ -1,6 +1,6 @@
 import sequelize from "../database/connection.js";
 import { DataTypes } from "sequelize";
-import { Usuario } from "./user.js";
+import { Usuario } from "./User.js";
 import { Category } from "./categories.js";
 
 export const Egreso = sequelize.define(
