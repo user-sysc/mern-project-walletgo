@@ -1,3 +1,6 @@
+import categoriesRoutes from "./routes/categories.routes.js";
+import expensesRoutes from "./routes/expenses.routes.js";
+import incomesRoutes from "./routes/incomes.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import express from "express";
 import cors from "cors";
@@ -11,5 +14,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use(userRoutes);
+app.use(incomesRoutes);
+app.use(expensesRoutes);
+app.use(categoriesRoutes);
 
 export default app;

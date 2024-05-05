@@ -15,6 +15,10 @@ export const Ingreso = sequelize.define(
       type: DataTypes.STRING(200),
       allowNull: false,
     },
+    amount: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
+    },
     description: {
       type: DataTypes.STRING(300),
       allowNull: true,

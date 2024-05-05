@@ -2,7 +2,7 @@ import sequelize from "../database/connection.js";
 import { DataTypes } from "sequelize";
 import { Usuario } from "./User.js";
 
-export const Categoria = sequelize.define(
+export const Category = sequelize.define(
   "Categoria",
   {
     id: {

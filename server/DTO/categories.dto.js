@@ -1,4 +1,4 @@
-export class CategoriesDTO {
+export class CategoryDto {
   constructor(id, name_category, createdAt, usuario_id) {
     this.id = id;
     this.name_category = name_category;

@@ -5,7 +5,9 @@ async function main() {
   try {
     await sequelize.sync({ force: false });
     app.listen(4001, () => {
+      console.log("*********************************");
       console.log("Server is listening on port 4001");
+      console.log("*********************************");
     });
   } catch (error) {
     console.error("Server Error: ", error);

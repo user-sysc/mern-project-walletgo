@@ -29,6 +29,8 @@ function AppRoutes() {
         <Route path="/Signup" element={<SignupPage />} />
         {/* Ruta para páginas no encontradas */}
         <Route path="/*" element={<NotFoundPage />} />
+        {/* Ruta para la página de Dashboard */}
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
     </>
   );

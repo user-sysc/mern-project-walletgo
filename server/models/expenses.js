@@ -3,7 +3,7 @@ import { DataTypes } from "sequelize";
 import { Usuario } from "./User.js";
 import { Category } from "./categories.js";
 
-export const Egreso = sequelize.define(
+export const Expense = sequelize.define(
   "Egreso",
   {
     id: {
@@ -16,7 +16,8 @@ export const Egreso = sequelize.define(
       allowNull: false,
     },
     amount: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING(300),
