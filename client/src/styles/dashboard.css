@@ -1,0 +1,80 @@
+
+.dashboard {
+    display: flex;
+    height: 100vh;
+    background-color: #1b1f27;
+    flex-direction: column; 
+  }
+  
+
+  .header {
+    width: 100%;
+    padding: 1rem;
+    background-color: #12161c;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+  }
+  
+  .nombrelogo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  
+  .sidebar {
+    height: 100%;
+    width: 250px;
+    background-color: #12161c;
+    color: #ecf0f1;
+    transition: all 0.3s;
+    flex-shrink: 0; 
+  }
+  
+  .sidebar-nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 20px; 
+  }
+  
+  .nav-item {
+    width: 100%;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: #25b244;
+  }
+  
+  .nav-link.collapsed {
+    color: #bdc3c7;
+  }
+  
+  .nav-link .fa-icon {
+    margin-right: 10px;
+    font-size: 1.25rem;
+  }
+  
+  
+  .main {
+    flex-grow: 1;
+    padding: 1rem;
+    margin-left: 250px; 
+  }
+  
+  .pagetitle {
+    margin-bottom: 1.5rem;
+  }
+  

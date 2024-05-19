@@ -2,7 +2,7 @@ import { FaBars, FaWallet } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import "../styles/navbar.css";
+import "../../styles/navbar.css";
 
 const Navbar = () => {
   const [Mobile, setMobile] = useState(false);
@@ -10,7 +10,7 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <h3 className="logo">
-          WalletGO
+          Wallet<span className="go">GO</span>
           <FaWallet color="#25b244" className="wallet-icon"></FaWallet>
         </h3>
         <ul

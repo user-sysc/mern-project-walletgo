@@ -4,6 +4,12 @@
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --transition: all 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+/* C O L O R S
+primary: '#1B1F28',
+second: '#12151E',
+button: '#1DB13E',
+inputs: '#212F3C' 
+*/
 * {
   font-family: var(--font-mono);
 }
@@ -17,4 +23,81 @@
 body {
   padding: 0;
   margin: 0;
+}
+
+/*  --------------------------------------------------------- */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+body {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.page-wrapper {
+  background-color: #12151E ;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  background-color: white;
+  min-height: 100vh;
+  padding: 50px 58px;
+  margin-left: 260px;
+}
+
+@media (max-width: 1400px) {
+  .content-wrapper {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .content-wrapper {
+    margin-left: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin-left: 0;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-wrapper {
+    margin-left: 0;
+    padding: 16px;
+  }
+}
+
+.content-area > section {
+  margin-bottom: 16px;
+}
+
+.content-area > section:last-child {
+  margin-bottom: 0;
 }

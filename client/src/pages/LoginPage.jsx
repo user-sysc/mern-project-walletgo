@@ -1,7 +1,7 @@
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import "../styles/styles.css";
 import axios from "axios";
@@ -37,6 +37,23 @@ function LoginPage() {
       });
       return;
     }
+    // TEMPORALMENTE PARA PRUEBAS - YA QUE EL PROFE QUIERE QUE SEA ADMIN Y ADMIN EL USER Y PASSWORD
+    if (formData.email === "admin@admin" && formData.password === "admin") {
+      Swal.fire({
+        title:
+          '<strong style="color: white;">¡Inicio de sesión exitoso!</strong>',
+        html: '<i style="color: white;">Has iniciado sesión correctamente</i>',
+        icon: "success",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 2000,
+      });
+
+      setFormData({ email: "", password: "" });
+
+      navigate("/Dashboard");
+      return;
+    }
     try {
       // Verificar si el usuario ya está registrado
       const existingUser = await axios.get(
@@ -70,7 +87,7 @@ function LoginPage() {
 
       setFormData({ email: "", password: "" });
 
-      navigate("/Signup");
+      navigate("/Dashboard");
       // handle successful login
       console.log(existingUser.data);
     } catch (error) {

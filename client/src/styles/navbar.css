@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+.logo .go {
+  color: #25b244;
+}
+
 .logo {
   display: flex;
   align-items: center; 
