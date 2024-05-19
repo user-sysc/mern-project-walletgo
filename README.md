@@ -1,3 +1,4 @@
+## login - mail : admin@admin --- passowrd: admin
 # WalletGO 
 
 WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayuda a llevar un control detallado de tus finanzas, permitiéndote registrar y categorizar tus ingresos y egresos, y proporcionándote una visión clara de tu situación financiera.
