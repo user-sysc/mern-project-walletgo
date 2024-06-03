@@ -1,5 +1,4 @@
-## login - mail : admin@admin --- passowrd: admin
-# WalletGO 
+# WalletGO
 
 WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayuda a llevar un control detallado de tus finanzas, permitiéndote registrar y categorizar tus ingresos y egresos, y proporcionándote una visión clara de tu situación financiera.
 
@@ -11,7 +10,7 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **Axios**: Cliente HTTP para realizar peticiones al servidor.
 - **React Icons**: Iconos para la interfaz de usuario.
 - **React Router DOM**: Enrutamiento para la aplicación de una sola página (SPA).
-- **SweetAlert2**: Biblioteca para crear alertas y diálogos personalizados.
+- **SweetAlert2**: Biblioteca para crear alerts y diálogos personalizados.
 
 ## Server
 
@@ -22,30 +21,50 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **Sequelize**: ORM para Node.js con soporte para varios dialectos de bases de datos.
 - **Cors**: Middleware para permitir solicitudes de origen cruzado (CORS).
 - **Morgan**: Middleware para el registro de solicitudes HTTP.
+- **Bcryptjs**: Herramienta para cifrar contraseñas en formato hash
+- **JSONWebToken**: Herramienta para la creación de tokes relacionadas con la autenticación
 
 ### Dependencias de Desarrollo
 
 - **Nodemon**: Herramienta para reiniciar y ver los cambios en tiempo real del servidor durante el desarrollo.
 
+## Antes de usar, instalar las siguientes herramientas para el correcto uso de la aplicación web
+
+1. Contar MySQL instalado, ya sea WorkBench MySQL u otro gestor de base de datos, nosotros usamos Laragon
+2. El proyecto esta realizado con el gestor de paquetes pnpm
+   - Ejecutar el siguiente comando en la terminal de windows como administrador le permitira hacer uso de otros gestores de paquetes de Node js, en este caso pnpm que es el que buscamos habilitar
+   ```bash
+   corepack enable
+   ```
+   - Seguido de esto actualizar pnpm a la versión mas reciente para un mejor funcionamiento
+   ```bash
+   corepack prepare pnpm@latest
+   ```
 
 ## Usage
 
 1. 📥 Clona el repositorio:
    ```bash
    git clone https://github.com/user-sysc/mern-project-walletgo.git
+   ```
 2. Ingresa a la directorio client
    ```bash
    cd client/
+   ```
 3. Instala las dependencias necesarias
    ```bash
-   pnpm install or pnpm i
+   pnpm install
+   ```
 4. Ingresa a la directorio server
-   ````bash
-   cd server/
-5. Instala las dependencias necesarias 
    ```bash
-   pnpm install or pnpm i
+   cd server/
+   ```
+5. Instala las dependencias necesarias
+   ```bash
+   pnpm install
+   ```
 6. Run on client/ and server/
+
    ```bash
    pnpm run dev
-   
+   ```
