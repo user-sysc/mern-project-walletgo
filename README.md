@@ -11,6 +11,8 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **React Icons**: Iconos para la interfaz de usuario.
 - **React Router DOM**: Enrutamiento para la aplicación de una sola página (SPA).
 - **SweetAlert2**: Biblioteca para crear alerts y diálogos personalizados.
+- **js-cookie**:
+- **prop-types**:
 
 ## Server
 
@@ -21,8 +23,9 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **Sequelize**: ORM para Node.js con soporte para varios dialectos de bases de datos.
 - **Cors**: Middleware para permitir solicitudes de origen cruzado (CORS).
 - **Morgan**: Middleware para el registro de solicitudes HTTP.
-- **Bcryptjs**: Herramienta para cifrar contraseñas en formato hash
-- **JSONWebToken**: Herramienta para la creación de tokes relacionadas con la autenticación
+- **bcryptjs**: Herramienta para cifrar contraseñas en formato hash
+- **jsonwebtoken**: Herramienta para la creación de tokes relacionadas con la autenticación.
+- **cookie-parser**: Herramienta para .
 
 ### Dependencias de Desarrollo
 
@@ -30,16 +33,23 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 
 ## Antes de usar, instalar las siguientes herramientas para el correcto uso de la aplicación web
 
-1. Contar MySQL instalado, ya sea WorkBench MySQL u otro gestor de base de datos, nosotros usamos Laragon
+1. Contar con MySQL instalado, ya sea WorkBench MySQL u otro gestor de base de datos, nosotros usamos Laragon.
 2. El proyecto esta realizado con el gestor de paquetes pnpm, en caso de no contar con el, ejecutar los siguientes pasos para habilitarlo
 
-   2.1 Ejecutar el siguiente comando en la terminal de windows como administrador le permitira hacer uso de otros gestores de paquetes de Node js, en este caso pnpm que es el que buscamos habilitar
-   
+   2.1 Ejecutar el siguiente comando en la terminal de windows como administrador le permitira hacer uso de otros gestores de paquetes de Node js, en este caso pnpm que es el que buscamos habilitar.
+
    ```bash
    corepack enable
    ```
-   2.2 Seguido de esto actualizar pnpm a la versión mas reciente para un mejor funcionamiento
-   
+
+   2.2 Para comprobar que ya contamos con el gestor de paquetes habilitado:
+
+   ```bash
+   pnpm --version
+   ```
+
+   2.3 Seguido de esto actualizar pnpm a la versión mas reciente para un mejor funcionamiento
+
    ```bash
    corepack prepare pnpm@latest --activate
    ```
@@ -50,24 +60,23 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
    ```bash
    git clone https://github.com/user-sysc/mern-project-walletgo.git
    ```
-2. Ingresa a la directorio client
+2. Ingresa a la directorio client:
    ```bash
    cd client/
    ```
-3. Instala las dependencias necesarias
+3. Instala las dependencias necesarias:
    ```bash
    pnpm install
    ```
-4. Ingresa a la directorio server
+4. Ingresa a la directorio server:
    ```bash
    cd server/
    ```
-5. Instala las dependencias necesarias
+5. Instala las dependencias necesarias:
    ```bash
    pnpm install
    ```
 6. Run on client/ and server/
-
    ```bash
    pnpm run dev
    ```
