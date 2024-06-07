@@ -58,7 +58,7 @@ export async function signin(email, password) {
     });
 
     
-    return new UserDto(userFound.id, userFound.name, userFound.email, token);
+    return new UserDto(userFound.id, userFound.name, userFound.email,userFound.password, token);
   } catch (error) {
     throw new Error(error.message);
   }
