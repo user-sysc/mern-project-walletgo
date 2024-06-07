@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--second);
   }
   
   .contact .rightSide {
@@ -19,7 +20,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--second);
+    background-color: var(--primary);
     padding: 2em;
     border-radius: 20px;
   }

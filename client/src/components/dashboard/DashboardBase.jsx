@@ -26,7 +26,9 @@ const DashboardBase = () => {
     <div className="dashboard">
       {/* BARRA SUPERIOR*/}
       <header className="header">
-        <h2 className="nombrelogo">WalletGO</h2>
+        <h2 className="nombrelogo">
+          Wallet<span style={{ color: "#1DB13E" }}>GO</span>
+        </h2>
       </header>
 
       {/* BARRA DE NAVEGACION LATERAL*/}

@@ -8,8 +8,8 @@
 primary: '#1B1F28',
 second: '#12151E',
 button: '#1DB13E',
-inputs: '#212F3C' 
-*/
+inputs: '#212F3C'  */
+
 * {
   font-family: var(--font-mono);
 }
