@@ -31,7 +31,7 @@ const DashboardBase = () => {
 
       {/* BARRA DE NAVEGACION LATERAL*/}
       <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <ul className="sidebar-nav" id="sidebar-nav">
+        <ul className="sidebar-nav-top" id="sidebar-nav">
           <li className="nav-item">
             <Link
               className={
@@ -111,7 +111,8 @@ const DashboardBase = () => {
               <span>Estadísticas</span>
             </Link>
           </li>
-
+        </ul>
+        <ul className="sidebar-nav-bottom">
           <li className="nav-item">
             <Link
               className={
