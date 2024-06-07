@@ -1,0 +1,538 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+:root[data-theme="light"] {
+  --color1: #ffffff;
+  --color2: #ebeef1;
+  --color3: #f7f7f8;
+  --text-color: #1c1c1f;
+  --button-text: #1c1c1f;
+}
+
+:root[data-theme="dark"] {
+  --color1: #1c1c1f;
+  --color2: #31313c;
+  --color3: #24242a;
+  --text-color: #ebeef1;
+  --button-text: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: var(--color2);
+}
+
+.w-full.h-full {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-comp {
+  background-color: var(--color1);
+  color: var(--text-color);
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+}
+
+.title-comp {
+  font-size: 1.875rem;
+  font-weight: bold;
+}
+
+.form-comp {
+  font-weight: bold;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  color: whitesmoke;
+}
+
+.sub-titles-copm {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.text-sm.font-medium.leading-none.peer-disabled:cursor-not-allowed.peer-disabled:opacity-70 {
+  font-size: 0.875rem;
+  font-weight: medium;
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card {
+  background-color: var(--color1);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.card label {
+  color: var(--text-color);
+  font-weight: bold;
+  margin-bottom: 0.1rem;
+  font-size: 13px;
+}
+
+.card input,
+.card select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background-color: var(--color2);
+}
+
+.card input:focus,
+.card select:focus {
+  border: 2px solid #5383e8;
+  outline: none;
+}
+
+.grid-item input,
+.grid-item select {
+  margin-bottom: -0.01rem;
+}
+
+.card input::-webkit-input-placeholder {
+  color: var(--text-color);
+}
+
+.card button {
+  width: 40%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #5383e8;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  left: 30%;
+  margin-top: 40px;
+}
+
+.card button:hover {
+  background-color: #375db1;
+}
+
+.card button[type="submit_2"] {
+  width: 20%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #053C5E;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  left: 30%;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.card button[type="button"] {
+  width: 20%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 30%;
+  margin-top: 20px;
+}
+
+.edit-button {
+  background-color: #2196f3;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-right: 0.5rem;
+  margin-left: 1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.85rem;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-right: 0.5rem;
+}
+
+.edit-button:hover {
+  background-color: #0b7dda;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+/*CSS TABLAS*/
+
+.table-card {
+  overflow: hidden;
+  color: var(--text-color);
+}
+
+.table-card table {
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.table-card table th,
+.table-card table td {
+  padding: 0.75rem;
+  border: 1px solid var(--color2);
+  background-color: var(--color1);
+}
+
+.table-card table td {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+
+.table-card table th {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}
+
+.table-card table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solidvar(--color2);
+}
+
+.table-card table tbody td {
+  text-align: center;
+}
+
+
+.table-card table tr:nth-child(odd) td {
+  background-color: var(--color3);
+}
+
+/* CSS PARA EL GRID DE PRODUCTOS */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  padding-top: -20px;
+}
+
+/* CSS para las search bar */
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.search-bar input,
+.search-bar select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--color2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  margin-bottom: -0.3rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
+  font-weight: normal;
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background-color: var(--color1);
+}
+
+.search-bar input::-webkit-input-placeholder,
+.search-bar select::-webkit-input-placeholder {
+  color: var(--text-color);
+}
+
+.search-bar input:focus,
+.search-bar select:focus {
+  border: 2px solid #5383e8;
+  outline: none;
+}
+
+/* CSS para venta */
+
+.card button[type="button-venta"] {
+  width: 80%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #1e2736;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 60%;
+  margin-top: 50px;
+}
+
+.table-card h3 {
+  margin-top: 20px;
+}
+
+.table-card button[type="button-registrar-venta"] {
+  width: 20%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #2196f3;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+  left: 0%;
+  margin-top: 20px;
+}
+
+/* CSS detalle de la venta */
+
+.table-card table {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.detalle-venta-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: var(--color1);
+  border: 1px solid var(--color2);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  animation: enterAnimation 0.5s ease forwards;
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes enterAnimation {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes exitAnimation {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.detalle-venta-card.exiting {
+  animation: exitAnimation 0.5s ease forwards;
+}
+
+.detalle-venta-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--text-color);
+  padding-bottom: 0.5rem;
+}
+
+.detalle-venta-card p,
+.detalle-venta-card li {
+  margin: 0.5rem 0;
+}
+
+.detalle-venta-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.detalle-venta-card li {
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.5rem 0;
+}
+
+.detalle-venta-card strong {
+  display: inline-block;
+  width: 150px;
+}
+
+.detalle-venta-card .total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.detalle-venta-card button {
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.5rem 1rem;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.detalle-venta-card button:hover {
+  background-color: #d32f2f;
+}
+
+.detalle-card-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+}
+
+.detalle-card-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -40px;
+}
+
+.report-button-card button {
+  background-color: #3F88C5;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-right: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.report-button-card button:hover {
+  background-color: #326894;
+}
+
+.cerrar-button-card button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-right: 0.5rem;
+  margin: 0 auto;
+}
+
+.print-button-container button {
+  background-color: #2E4057;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-top: 0rem;
+  margin-left: 95rem;
+}
+
+.print-button-container button:hover {
+  background-color: #2b3a50;
+}
+
+.print-button-container-empleado button {
+  background-color: #2E4057;
+  color: #fff;
+  border: none;
+  border-radius: 1em;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin-top: 0rem;
+  margin-left: 98rem;
+}
+
+.print-button-container-empleado button:hover {
+  background-color: #2b3a50;
+}
+
+
+.cerrar-button-card button:hover {
+  background-color: #d32f2f;
+}
+
+.total-venta {
+  color: whitesmoke;
+}

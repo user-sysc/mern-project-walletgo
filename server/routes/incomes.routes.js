@@ -1,27 +1,19 @@
-import { Router } from "express";
 import * as IncomesController from "../controllers/incomes.controller.js";
+import { userRequeried } from "../middlewares/user.middlewares.js";
+import { Router } from "express";
 
 const router = Router();
 
-// Configura el router para manejar una solicitud GET a la ruta '/incomes'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función getIncomes
-router.get("/incomes", IncomesController.getIncomes);
+// router.post("/income", userRequeried, IncomesController.createIncome); //create income
+// router.get("/incomes", userRequeried, IncomesController.getAllIncomes); // get all incomes
+// router.get("/incomes/:id", userRequeried, IncomesController.getIncome); // get income
+// router.put("/incomes/:id", userRequeried, IncomesController.updateIncome); // update income
+// router.delete("/incomes/:id", userRequeried, IncomesController.deleteIncome); // delete income
 
-// Configura el router para manejar una solicitud GET a la ruta '/incomes/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función getIncomeById
-router.get("/incomes/:id", IncomesController.getIncomeById);
+router.post("/income", IncomesController.createIncome); //create income
+router.get("/incomes", IncomesController.getAllIncomes); // get all incomes
+router.get("/incomes/:id", IncomesController.getIncome); // get income
+router.put("/incomes/:id", IncomesController.updateIncome); // update income
+router.delete("/incomes/:id", IncomesController.deleteIncome); // delete income
 
-// Configura el router para manejar una solicitud POST a la ruta '/incomes'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función createIncome
-router.post("/incomes", IncomesController.createIncome);
-
-// Configura el router para manejar una solicitud PUT a la ruta '/incomes/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función updateIncome
-router.put("/incomes/:id", IncomesController.updateIncome);
-
-// Configura el router para manejar una solicitud DELETE a la ruta '/incomes/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función deleteIncome
-router.delete("/incomes/:id", IncomesController.deleteIncome);
-
-// Exportamos para que pueda ser utilizado en otros archivos
 export default router;

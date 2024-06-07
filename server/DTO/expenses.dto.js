@@ -1,4 +1,4 @@
-export class ExpenseDto {
+export class ExpensesDTO {
   constructor(id, title, amount, description, createdAt, user_id, category_id) {
     this.id = id;
     this.title = title;

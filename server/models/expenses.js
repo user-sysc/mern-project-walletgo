@@ -1,9 +1,9 @@
 import sequelize from "../database/connection.js";
 import { DataTypes } from "sequelize";
 import { Usuario } from "./User.js";
-import { Category } from "./categories.js";
+import { Categoria } from "./categories.js";
 
-export const Expense = sequelize.define(
+export const Egreso = sequelize.define(
   "Egreso",
   {
     id: {
@@ -15,13 +15,13 @@ export const Expense = sequelize.define(
       type: DataTypes.STRING(200),
       allowNull: false,
     },
-    amount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
     description: {
       type: DataTypes.STRING(300),
       allowNull: true,
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     createdAT: {
       type: DataTypes.DATE,
@@ -41,7 +41,7 @@ export const Expense = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: Category,
+        model: Categoria,
         key: "id",
       },
       onDelete: "SET NULL",

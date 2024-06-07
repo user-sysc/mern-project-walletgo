@@ -1,80 +1,102 @@
-
 .dashboard {
-    display: flex;
-    height: 100vh;
-    background-color: #1b1f27;
-    flex-direction: column; 
-  }
-  
+  display: flex;
+  height: 100vh;
+  background-color: #1b1f27;
+}
 
-  .header {
-    width: 100%;
-    padding: 1rem;
-    background-color: #12161c;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0; 
-  }
-  
-  .nombrelogo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  
-  .sidebar {
-    height: 100%;
-    width: 250px;
-    background-color: #12161c;
-    color: #ecf0f1;
-    transition: all 0.3s;
-    flex-shrink: 0; 
-  }
-  
-  .sidebar-nav {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    margin-top: 20px; 
-  }
-  
-  .nav-item {
-    width: 100%;
-  }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.25rem;
-    color: #ecf0f1;
-    text-decoration: none;
-    transition: background 0.3s;
-  }
-  
-  .nav-link:hover,
-  .nav-link.active {
-    background-color: #25b244;
-  }
-  
-  .nav-link.collapsed {
-    color: #bdc3c7;
-  }
-  
-  .nav-link .fa-icon {
-    margin-right: 10px;
-    font-size: 1.25rem;
-  }
-  
-  
-  .main {
-    flex-grow: 1;
-    padding: 1rem;
-    margin-left: 250px; 
-  }
-  
-  .pagetitle {
-    margin-bottom: 1.5rem;
-  }
-  
+.header {
+  width: 100%;
+  padding: 1rem;
+  background-color: #12161c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.nombrelogo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.welcome-message {
+  font-size: 1rem;
+  color: #ecf0f1;
+}
+
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #12161c;
+  color: #ecf0f1;
+  transition: all 0.3s;
+  position: fixed;
+  top: 60px; /* ajustar al tamaño de la header */
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-nav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav-top {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav-bottom {
+  margin-top: auto; /* Empuja hacia abajo Configuración y Logout */
+  margin-bottom: 80px; /* Agrega un margen inferior */
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: background 0.3s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background-color: #25b244;
+}
+
+.nav-link.collapsed {
+  color: #bdc3c7;
+}
+
+.nav-link .fa-icon {
+  margin-right: 10px;
+  font-size: 1.25rem;
+}
+
+.main {
+  margin-left: 200px; /* Ajustar al tamaño del sidebar */
+  padding: 1rem;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-top: 60px; /* Ajustar al tamaño de la header */
+}
+
+.pagetitle {
+  margin-bottom: 1.5rem;
+}

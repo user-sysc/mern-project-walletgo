@@ -1,4 +1,4 @@
-CREATE DATABASE walletgo_DB;
+CREATE DATABASE walletgo_db;
 
 use walletgo_DB;
 

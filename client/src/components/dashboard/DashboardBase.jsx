@@ -6,12 +6,16 @@ import {
   FaThLarge,
   FaChartLine,
   FaCog,
+  FaHome,
+  FaSignOutAlt,
 } from "react-icons/fa";
-import FormIncomes from "../dashboard/formIncomes.jsx";
-import FormExpenses from "./formExpenses.jsx";
-import FormCategories from "../dashboard/formCategories.jsx";
-import FormEstadistics from "../dashboard/formEstadistics.jsx";
-import FormSettings from "../dashboard/formSettings.jsx";
+import FormIncomes from "./forms/FormIncomes.jsx";
+import FormExpenses from "./forms/FormExpenses.jsx";
+import FormCategories from "./forms/FormCategories.jsx";
+import FormEstadistics from "./forms/FormEstadistics.jsx";
+import FormSettings from "./forms/FormSettings.jsx";
+// import FormHome from "./forms/FormHome.jsx";
+// import FormLogout from "./forms/FormLogout.jsx";
 import "../../styles/dashboard.css";
 
 const DashboardBase = () => {
@@ -126,17 +130,38 @@ const DashboardBase = () => {
               />
               <span>Configuración</span>
             </Link>
+            <li className="nav-item">
+              <Link
+                className={
+                  activeContent === "logout"
+                    ? "nav-link active"
+                    : "nav-link collapsed"
+                }
+                onClick={() => setActiveContent("logout")}
+              >
+                <FaSignOutAlt
+                  style={{
+                    marginLeft: "0px",
+                    marginRight: "5px",
+                    fontSize: "20px",
+                  }}
+                />
+                <span>Cerrar sesión</span>
+              </Link>
+            </li>
           </li>
         </ul>
       </aside>
 
       <main className="main">
         <div className="pagetitle" />
+        {activeContent === "inicio" && <FormHome />}
         {activeContent === "ingresos" && <FormIncomes />}
         {activeContent === "egresos" && <FormExpenses />}
         {activeContent === "categorias" && <FormCategories />}
         {activeContent === "estadisticas" && <FormEstadistics />}
         {activeContent === "configuracion" && <FormSettings />}
+        {activeContent === "logout" && <FormLogout />}
       </main>
     </div>
   );

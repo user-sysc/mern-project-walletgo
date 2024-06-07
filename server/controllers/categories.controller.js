@@ -1,57 +1,63 @@
-import * as CategoriesService from "../services/categories.services.js";
+import * as categoryService from "../services/categories.services.js";
 
-export async function getCategories(req, res, next) {
+// Create category
+export async function createCategory(req, res) {
+  const { usuario_id, name_category } = req.body;
   try {
-    const categories = await CategoriesService.getCategories();
-    res.status(200).json(categories);
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function getCategoryById(req, res, next) {
-  try {
-    const category = await CategoriesService.getCategoryById(req.params.id);
-    if (category) {
-      res.status(200).json(category);
-    } else {
-      res.status(404).send();
-    }
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function createCategory(req, res, next) {
-  try {
-    const category = await CategoriesService.createCategory(req.body);
-    res.status(201).json(category);
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function updateCategory(req, res, next) {
-  try {
-    const updatedCategory = await CategoriesService.updateCategory(
-      req.params.id,
-      req.body
+    const newCategory = await categoryService.createCategory(
+      usuario_id,
+      name_category
     );
-    if (updatedCategory) {
-      res.status(200).json(updatedCategory);
-    } else {
-      res.status(404).send();
-    }
+    res.json(newCategory);
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: error.message });
   }
 }
 
-export async function deleteCategory(req, res, next) {
+// Get all categories
+export async function getAllCategories(req, res) {
+  const { usuario_id } = req.body;
   try {
-    await CategoriesService.deleteCategory(req.params.id);
-    res.status(204).send();
+    const categories = await categoryService.getAllCategories(usuario_id);
+    res.json(categories);
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// Get Category
+export async function getCategory(req, res) {
+  const { usuario_id, id } = req.body;
+  try {
+    const category = await categoryService.getCategory(usuario_id, id);
+    res.json(category);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// update category
+export async function updateCategory(req, res) {
+  const { id, usuario_id, name_category } = req.body;
+  try {
+    const categoryUpdate = await categoryService.updateCategory(
+      id,
+      usuario_id,
+      name_category
+    );
+    res.json(categoryUpdate);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// Delete category
+export async function deleteCategory(req, res) {
+  const { id, usuario_id } = req.body;
+  try {
+    await categoryService.deleteCategory(id, usuario_id);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 }

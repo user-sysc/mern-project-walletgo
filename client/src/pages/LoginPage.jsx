@@ -1,10 +1,10 @@
-import { RiLogoutBoxLine } from "react-icons/ri";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from "../context/authContext";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import "../styles/styles.css";
-import axios from "axios";
 
 function LoginPage() {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -23,8 +23,10 @@ function LoginPage() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const { signin } = useAuth();
+
+  const handleSubmit = async () => {
+    event.preventDefault();
     // Verificar si los campos están vacíos
     if (!formData.email || !formData.password) {
       Swal.fire({
@@ -37,44 +39,8 @@ function LoginPage() {
       });
       return;
     }
-    // TEMPORALMENTE PARA PRUEBAS - YA QUE EL PROFE QUIERE QUE SEA ADMIN Y ADMIN EL USER Y PASSWORD
-    if (formData.email === "admin@admin" && formData.password === "admin") {
-      Swal.fire({
-        title:
-          '<strong style="color: white;">¡Inicio de sesión exitoso!</strong>',
-        html: '<i style="color: white;">Has iniciado sesión correctamente</i>',
-        icon: "success",
-        background: "#12151E",
-        confirmButtonColor: "#1DB13E",
-        timer: 2000,
-      });
-
-      setFormData({ email: "", password: "" });
-
-      navigate("/Dashboard");
-      return;
-    }
     try {
-      // Verificar si el usuario ya está registrado
-      const existingUser = await axios.get(
-        `http://localhost:4001/usuarios/${formData.email}`
-      );
-      if (
-        !existingUser.data ||
-        existingUser.data.password !== formData.password
-      ) {
-        Swal.fire({
-          title:
-            '<strong style="color: white;">¡Credenciales incorrectas!</strong>',
-          html: '<i style="color: white;">El correo electrónico o la contraseña son incorrectos</i>',
-          icon: "warning",
-          background: "#12151E",
-          confirmButtonColor: "#1DB13E",
-          timer: 3000,
-        });
-        return;
-      }
-
+      await signin(formData);
       Swal.fire({
         title:
           '<strong style="color: white;">¡Inicio de sesión exitoso!</strong>',
@@ -84,21 +50,17 @@ function LoginPage() {
         confirmButtonColor: "#1DB13E",
         timer: 2000,
       });
-
-      setFormData({ email: "", password: "" });
-
-      navigate("/Dashboard");
-      // handle successful login
-      console.log(existingUser.data);
+      navigate("/dashboard");
     } catch (error) {
-      console.error(error);
       Swal.fire({
         title:
-          '<strong style="color: white;">Hubo un error al iniciar sesión</strong>',
+          '<strong style="color: white;">¡Credenciales incorrectas!</strong>',
+        html: '<i style="color: white;">El correo electrónico o la contraseña son incorrectos</i>',
         icon: "warning",
         background: "#12151E",
         confirmButtonColor: "#1DB13E",
-        timer: 4000,
+        timer: 3000,
+        footer: `<p style="color: white;">${error.message}</p>`,
       });
     }
   };

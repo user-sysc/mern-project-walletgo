@@ -39,6 +39,7 @@
 .label-contact {
   color: #fff;
   margin-bottom: 0.5em;
+  font-size: 15px;
 }
 
 /* width 685px height 148px */
@@ -63,4 +64,6 @@
   padding: 0.5em 1em;
   border-radius: 9px;
   cursor: pointer;
+  font-size: 18px;
 }
+

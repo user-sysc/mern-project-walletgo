@@ -1,6 +1,6 @@
 import sequelize from "../database/connection.js";
 import { DataTypes } from "sequelize";
-import { Category } from "./categories.js";
+import { Categoria } from "./categories.js";
 import { Usuario } from "./User.js";
 
 export const Ingreso = sequelize.define(
@@ -15,13 +15,13 @@ export const Ingreso = sequelize.define(
       type: DataTypes.STRING(200),
       allowNull: false,
     },
-    amount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-    },
     description: {
       type: DataTypes.STRING(300),
       allowNull: true,
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     createdAT: {
       type: DataTypes.DATE,
@@ -41,7 +41,7 @@ export const Ingreso = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: Category,
+        model: Categoria,
         key: "id",
       },
       onDelete: "SET NULL",

@@ -1,27 +1,19 @@
-import { Router } from "express";
 import * as ExpensesController from "../controllers/expenses.controller.js";
+import { userRequeried } from "../middlewares/user.middlewares.js";
+import { Router } from "express";
 
 const router = Router();
 
-// Configura el router para manejar una solicitud GET a la ruta '/expenses'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función getExpenses
-router.get("/expenses", ExpensesController.getExpenses);
+// router.post("/expense", userRequeried, ExpensesController.createExpense); //create expense
+// router.get("/expenses", userRequeried, ExpensesController.getAllExpenses); // get all expenses
+// router.get("/expenses/:id", userRequeried, ExpensesController.getExpense); // get expense
+// router.put("/expenses/:id", userRequeried, ExpensesController.updateExpense); // update expense
+// router.delete("/expenses/:id", userRequeried, ExpensesController.deleteExpense); // delete expense
 
-// Configura el router para manejar una solicitud GET a la ruta '/expenses/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función getExpenseById
-router.get("/expenses/:id", ExpensesController.getExpenseById);
+router.post("/expense", ExpensesController.createExpense); //create expense
+router.get("/expenses", ExpensesController.getAllExpenses); // get all expenses
+router.get("/expenses/:id", ExpensesController.getExpense); // get expense
+router.put("/expenses/:id", ExpensesController.updateExpense); // update expense
+router.delete("/expenses/:id", ExpensesController.deleteExpense); // delete expense
 
-// Configura el router para manejar una solicitud POST a la ruta '/expenses'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función createExpense
-router.post("/expenses", ExpensesController.createExpense);
-
-// Configura el router para manejar una solicitud PUT a la ruta '/expenses/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función updateExpense
-router.put("/expenses/:id", ExpensesController.updateExpense);
-
-// Configura el router para manejar una solicitud DELETE a la ruta '/expenses/:id'
-// Cuando se recibe una solicitud a esta ruta, se llama a la función deleteExpense
-router.delete("/expenses/:id", ExpensesController.deleteExpense);
-
-// Exportamos para que pueda ser utilizado en otros archivos
 export default router;

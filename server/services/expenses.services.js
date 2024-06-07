@@ -1,13 +1,27 @@
-import { Expense } from "../models/expenses.js";
-import { ExpenseDto } from "../DTO/expenses.dto.js";
+import { Egreso } from "../models/expenses.js";
+import { ExpensesDTO } from "../DTO/expenses.dto.js";
 
-export async function createExpense(expenseData) {
+// Create expense
+export async function createExpense(
+  title,
+  description,
+  amount,
+  user_id,
+  category_id
+) {
   try {
-    const newExpense = await Expense.create(expenseData);
-    return new ExpenseDto(
+    const newExpense = await Egreso.create({
+      title,
+      description,
+      amount,
+      user_id,
+      category_id,
+    });
+    return new ExpensesDTO(
       newExpense.id,
       newExpense.title,
       newExpense.description,
+      newExpense.amount,
       newExpense.createdAT,
       newExpense.user_id,
       newExpense.category_id
@@ -17,14 +31,46 @@ export async function createExpense(expenseData) {
   }
 }
 
-export async function getExpenseById(id) {
+// Get all expenses
+export async function getAllExpenses(user_id) {
   try {
-    const expense = await Expense.findByPk(id);
+    const expenses = await Egreso.findAll({
+      where: {
+        user_id,
+      },
+    });
+    return expenses.map(
+      (expenses) =>
+        new ExpensesDTO(
+          expenses.id,
+          expenses.title,
+          expenses.description,
+          expenses.amount,
+          expenses.createdAT,
+          expenses.user_id,
+          expenses.category_id
+        )
+    );
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+// get expense
+export async function getExpense(id, user_id) {
+  try {
+    const expense = await Egreso.findOne({
+      where: {
+        id,
+        user_id,
+      },
+    });
     if (expense) {
-      return new ExpenseDto(
+      return new ExpensesDTO(
         expense.id,
         expense.title,
         expense.description,
+        expense.amount,
         expense.createdAT,
         expense.user_id,
         expense.category_id
@@ -37,52 +83,40 @@ export async function getExpenseById(id) {
   }
 }
 
-export async function getExpenses() {
+// Update expense
+export async function updateExpense(id, user_id, title, description, amount) {
   try {
-    const expenses = await Expense.findAll();
-    return expenses.map(
-      (expense) =>
-        new ExpenseDto(
-          expense.id,
-          expense.title,
-          expense.description,
-          expense.createdAT,
-          expense.user_id,
-          expense.category_id
-        )
+    const expense = await Egreso.findOne({
+      where: {
+        id,
+        user_id,
+      },
+    });
+    expense.title = title;
+    expense.description = description;
+    expense.amount = amount;
+    await expense.save();
+    return new ExpensesDTO(
+      expense.id,
+      expense.title,
+      expense.description,
+      expense.amount,
+      expense.createdAT,
+      expense.user_id,
+      expense.category_id
     );
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function updateExpense(id, expenseData) {
+// Delete expense
+export async function deleteExpense(id, user_id) {
   try {
-    const expense = await Expense.findByPk(id);
-    if (expense) {
-      Object.assign(expense, expenseData);
-      await expense.save();
-      return new ExpenseDto(
-        expense.id,
-        expense.title,
-        expense.description,
-        expense.createdAT,
-        expense.user_id,
-        expense.category_id
-      );
-    } else {
-      throw new Error("Expense not found");
-    }
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
-
-export async function deleteExpense(id) {
-  try {
-    await Expense.destroy({
+    await Egreso.destroy({
       where: {
         id,
+        user_id,
       },
     });
   } catch (error) {

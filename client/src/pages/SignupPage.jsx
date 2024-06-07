@@ -1,14 +1,17 @@
-import { RiLogoutBoxLine } from "react-icons/ri";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { RiLogoutBoxLine } from "react-icons/ri";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import "../styles/styles.css";
-import axios from "axios";
+import { useAuth } from "../context/authContext";
 
 function SignupPage() {
   const [passwordShown, setPasswordShown] = useState(false);
   const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+  const { signup, isAuthenticated } = useAuth();
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
@@ -19,14 +22,18 @@ function SignupPage() {
     email: "",
     password: "",
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  // useEffect(() => {
+  //   if (isAuthenticated) navigate("/login");
+  // }, [isAuthenticated, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Verificar si los campos están vacíos
     if (!formData.name || !formData.email || !formData.password) {
       Swal.fire({
         title:
@@ -39,26 +46,7 @@ function SignupPage() {
       return;
     }
     try {
-      // Verificar si el usuario ya está registrado
-      const existingUser = await axios.get(
-        `http://localhost:4001/usuarios/${formData.email}`
-      );
-      if (existingUser.data) {
-        Swal.fire({
-          title: '<strong style="color: white;">¡Registro existente!</strong>',
-          html: '<i style="color: white;">El usuario ya se encuentra registrado</i>',
-          icon: "warning",
-          background: "#12151E",
-          confirmButtonColor: "#1DB13E",
-          timer: 3000,
-        });
-        return;
-      }
-
-      const response = await axios.post(
-        "http://localhost:4001/usuarios",
-        formData
-      );
+      await signup(formData);
       Swal.fire({
         title: '<strong style="color: white;">Registro exitoso!!</strong>',
         html: '<i style="color: white;">El usuario fue registrado con éxito</i>',
@@ -67,14 +55,14 @@ function SignupPage() {
         confirmButtonColor: "#1DB13E",
         timer: 2000,
       });
-      setFormData({ name: "", email: "", password: "" });
-
-      navigate("/Signup");
-
-      // handle successful registration
-      console.log(response.data);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      navigate("/login");
     } catch (error) {
-      console.error(error);
+      setError(error.response.data.message);
       Swal.fire({
         title:
           '<strong style="color: white;">Hubo un error al registrar el usuario</strong>',
@@ -82,6 +70,7 @@ function SignupPage() {
         background: "#12151E",
         confirmButtonColor: "#1DB13E",
         timer: 4000,
+        footer: `<p style="color: white;">${error.response.data.message}</p>`,
       });
     }
   };

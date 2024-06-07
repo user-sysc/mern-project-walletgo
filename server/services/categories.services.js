@@ -1,29 +1,63 @@
-import { Category } from "../models/categories.js";
-import { CategoryDto } from "../DTO/categories.dto.js";
+import { Categoria } from "../models/categories.js";
+import { CategoryDTO } from "../DTO/categories.dto.js";
 
-export async function createCategory(categoryData) {
+// Create Category
+export async function createCategory(usuario_id, name_category) {
   try {
-    const newCategory = await Category.create(categoryData);
-    return new CategoryDto(
-      newCategory.id,
-      newCategory.name,
-      newCategory.createdAT,
-      newCategory.user_id
+    await verifyCategory(name_category, usuario_id);
+
+    const newCategoria = await Categoria.create({
+      usuario_id,
+      name_category,
+    });
+    return new CategoryDTO(
+      newCategoria.id,
+      newCategoria.name_category,
+      newCategoria.createdAT,
+      newCategoria.usuario_id
     );
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function getCategoryById(id) {
+// Get all categories
+export async function getAllCategories(usuario_id) {
   try {
-    const category = await Category.findByPk(id);
+    const categories = await Categoria.findAll({
+      where: {
+        usuario_id,
+      },
+    });
+    return categories.map(
+      (categories) =>
+        new CategoryDTO(
+          categories.id,
+          categories.name_category,
+          categories.createdAT,
+          categories.usuario_id
+        )
+    );
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+// get category
+export async function getCategory(usuario_id, id) {
+  try {
+    const category = await Categoria.findOne({
+      where: {
+        usuario_id,
+        id,
+      },
+    });
     if (category) {
-      return new CategoryDto(
+      return new CategoryDTO(
         category.id,
-        category.name,
+        category.name_category,
         category.createdAT,
-        category.user_id
+        category.usuario_id
       );
     } else {
       return null;
@@ -33,51 +67,48 @@ export async function getCategoryById(id) {
   }
 }
 
-export async function getCategories() {
+// Update category
+export async function updateCategory(id, usuario_id, name_category) {
   try {
-    const categories = await Category.findAll();
-    return categories.map(
-      (category) =>
-        new CategoryDto(
-          category.id,
-          category.name,
-          category.createdAT,
-          category.user_id
-        )
+    const category = await Categoria.findOne({
+      where: {
+        id,
+        usuario_id,
+      },
+    });
+    category.name_category = name_category;
+    await category.save();
+    return new CategoryDTO(
+      category.id,
+      category.name_category,
+      category.createdAT,
+      category.usuario_id
     );
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function updateCategory(id, categoryData) {
+// Delete Category
+export async function deleteCategory(id, usuario_id) {
   try {
-    const category = await Category.findByPk(id);
-    if (category) {
-      Object.assign(category, categoryData);
-      await category.save();
-      return new CategoryDto(
-        category.id,
-        category.name,
-        category.createdAT,
-        category.user_id
-      );
-    } else {
-      throw new Error("Category not found");
-    }
+    await Categoria.destroy({
+      where: {
+        id,
+        usuario_id,
+      },
+    });
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function deleteCategory(id) {
-  try {
-    await Category.destroy({
-      where: {
-        id,
-      },
-    });
-  } catch (error) {
-    throw new Error(error.message);
+async function verifyCategory(name_category, usuario_id) {
+  const categoryFound = await Categoria.findOne({
+    where: { name_category, usuario_id },
+  });
+
+  if (categoryFound) {
+    throw new Error("Category already exists");
   }
 }

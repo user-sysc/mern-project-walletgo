@@ -1,28 +1,27 @@
 import { Ingreso } from "../models/incomes.js";
-import { IncomesDto } from "../DTO/incomes.dto.js";
+import { IncomesDTO } from "../DTO/incomes.dto.js";
 
+// Create Income
 export async function createIncome(
   title,
-  amount,
   description,
-  createdAT,
+  amount,
   user_id,
   category_id
 ) {
   try {
     const newIncome = await Ingreso.create({
       title,
-      amount,
       description,
-      createdAT,
+      amount,
       user_id,
       category_id,
     });
-    return new IncomeDto(
+    return new IncomesDTO(
       newIncome.id,
       newIncome.title,
-      newIncome.amount,
       newIncome.description,
+      newIncome.amount,
       newIncome.createdAT,
       newIncome.user_id,
       newIncome.category_id
@@ -32,15 +31,46 @@ export async function createIncome(
   }
 }
 
-export async function getIncomeById(id) {
+// Get all incomes
+export async function getAllIncomes(user_id) {
   try {
-    const income = await Ingreso.findByPk(id);
+    const incomes = await Ingreso.findAll({
+      where: {
+        user_id,
+      },
+    });
+    return incomes.map(
+      (incomes) =>
+        new IncomesDTO(
+          incomes.id,
+          incomes.title,
+          incomes.description,
+          incomes.amount,
+          incomes.createdAT,
+          incomes.user_id,
+          incomes.category_id
+        )
+    );
+  } catch (error) {
+    throw new Error(error.message);
+  }
+}
+
+// get income
+export async function getIncome(id, user_id) {
+  try {
+    const income = await Ingreso.findOne({
+      where: {
+        id,
+        user_id,
+      },
+    });
     if (income) {
-      return new IncomeDto(
+      return new IncomesDTO(
         income.id,
         income.title,
-        income.amount,
         income.description,
+        income.amount,
         income.createdAT,
         income.user_id,
         income.category_id
@@ -53,67 +83,40 @@ export async function getIncomeById(id) {
   }
 }
 
-export async function getAllIncomes() {
+// Update income
+export async function updateIncome(id, user_id, title, description, amount) {
   try {
-    const incomes = await Ingreso.findAll();
-    return incomes.map(
-      (income) =>
-        new IncomeDto(
-          income.id,
-          income.title,
-          income.amount,
-          income.description,
-          income.createdAT,
-          income.user_id,
-          income.category_id
-        )
+    const income = await Ingreso.findOne({
+      where: {
+        id,
+        user_id,
+      },
+    });
+    income.title = title;
+    income.description = description;
+    income.amount = amount;
+    await income.save();
+    return new IncomesDTO(
+      income.id,
+      income.title,
+      income.description,
+      income.amount,
+      income.createdAT,
+      income.user_id,
+      income.category_id
     );
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-export async function updateIncome(
-  id,
-  title,
-  amount,
-  description,
-  createdAT,
-  user_id,
-  category_id
-) {
-  try {
-    const income = await Ingreso.findByPk(id);
-    if (income) {
-      income.title = title;
-      income.amount = amount;
-      income.description = description;
-      income.createdAT = createdAT;
-      income.user_id = user_id;
-      income.category_id = category_id;
-      await income.save();
-      return new IncomeDto(
-        income.id,
-        income.title,
-        income.amount,
-        income.description,
-        income.createdAT,
-        income.user_id,
-        income.category_id
-      );
-    } else {
-      throw new Error("Income not found");
-    }
-  } catch (error) {
-    throw new Error(error.message);
-  }
-}
-
-export async function deleteIncome(id) {
+// Delete income
+export async function deleteIncome(id, user_id) {
   try {
     await Ingreso.destroy({
       where: {
         id,
+        user_id,
       },
     });
   } catch (error) {

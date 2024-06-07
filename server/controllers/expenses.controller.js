@@ -1,57 +1,68 @@
-import * as ExpensesService from "../services/expenses.services.js";
+import * as expensesService from "../services/expenses.services.js";
 
-export async function getExpenses(req, res, next) {
+// Create expense
+export async function createExpense(req, res) {
+  const { title, description, amount, category_id, user_id } = req.body;
   try {
-    const expenses = await ExpensesService.getExpenses();
-    res.status(200).json(expenses);
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function getExpenseById(req, res, next) {
-  try {
-    const expense = await ExpensesService.getExpenseById(req.params.id);
-    if (expense) {
-      res.status(200).json(expense);
-    } else {
-      res.status(404).send();
-    }
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function createExpense(req, res, next) {
-  try {
-    const expense = await ExpensesService.createExpense(req.body);
-    res.status(201).json(expense);
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function updateExpense(req, res, next) {
-  try {
-    const updatedExpense = await ExpensesService.updateExpense(
-      req.params.id,
-      req.body
+    const newExpense = await expensesService.createExpense(
+      title,
+      description,
+      amount,
+      user_id,
+      category_id
     );
-    if (updatedExpense) {
-      res.status(200).json(updatedExpense);
-    } else {
-      res.status(404).send();
-    }
+    res.json(newExpense);
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: error.message });
   }
 }
 
-export async function deleteExpense(req, res, next) {
+// Get all expenses
+export async function getAllExpenses(req, res) {
+  const { user_id } = req.body;
   try {
-    await ExpensesService.deleteExpense(req.params.id);
-    res.status(204).send();
+    const expenses = await expensesService.getAllExpenses(user_id);
+    res.json(expenses);
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// Get expense
+export async function getExpense(req, res) {
+  const { id, user_id } = req.body;
+  try {
+    const expense = await expensesService.getExpense(user_id, id);
+    res.json(expense);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// update expense
+export async function updateExpense(req, res) {
+  const { id, title, description, amount, user_id } = req.body;
+  try {
+    const expenseUpdate = await expensesService.updateExpense(
+      id,
+      user_id,
+      title,
+      description,
+      amount
+    );
+    res.json(expenseUpdate);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+// Delete expense
+export async function deleteExpense(req, res) {
+  const { id, user_id } = req.body;
+  try {
+    await expensesService.deleteExpense(id, user_id);
+    res.sendStatus(204);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 }
