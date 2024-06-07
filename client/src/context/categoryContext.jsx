@@ -11,7 +11,7 @@ const CategoryContext = createContext();
 export const useCategory = () => {
   const context = useContext(CategoryContext);
   if (!context) {
-    throw new Error("useCategoria ya esta usado");
+    throw new Error("useCategory is already in use");
   }
   return context;
 };

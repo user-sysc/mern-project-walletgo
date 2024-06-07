@@ -4,20 +4,20 @@ import { Router } from "express";
 
 const router = Router();
 
-// router.post("/category", userRequeried, CategoryController.createCategory); //create category
-// router.get("/categories", userRequeried, CategoryController.getAllCategories); // get all categories
-// router.get("/categories/:id", userRequeried, CategoryController.getCategory); // get category
-// router.put("/categories/:id", userRequeried, CategoryController.updateCategory); // update category
-// router.delete(
-//   "/categories/:id",
-//   userRequeried,
-//   CategoryController.deleteCategory
-// ); // delete category
+router.post("/category", userRequeried, CategoryController.createCategory); //create category
+router.get("/categories", userRequeried, CategoryController.getAllCategories); // get all categories
+router.get("/categories/:id", userRequeried, CategoryController.getCategory); // get category
+router.put("/categories/:id", userRequeried, CategoryController.updateCategory); // update category
+router.delete(
+  "/categories/:id",
+  userRequeried,
+  CategoryController.deleteCategory
+); // delete category
 
-router.post("/category", CategoryController.createCategory); //create category
-router.get("/categories", CategoryController.getAllCategories); // get all categories
-router.get("/categories/:id", CategoryController.getCategory); // get category
-router.put("/categories/:id", CategoryController.updateCategory); // update category
-router.delete("/categories/:id", CategoryController.deleteCategory); // delete category
+// router.post("/category", CategoryController.createCategory); //create category
+// router.get("/categories", CategoryController.getAllCategories); // get all categories
+// router.get("/categories/:id", CategoryController.getCategory); // get category
+// router.put("/categories/:id", CategoryController.updateCategory); // update category
+// router.delete("/categories/:id", CategoryController.deleteCategory); // delete category
 
 export default router;

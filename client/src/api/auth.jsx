@@ -1,4 +1,4 @@
-import axios from "./axios";
+import axios from "./axios.jsx";
 
 export const registerRequest = (user) => axios.post(`/signup`, user);
 export const loginRequest = (user) => axios.post(`/login`, user);
