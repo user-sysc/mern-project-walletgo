@@ -17,9 +17,12 @@ import FormSettings from "./forms/FormSettings.jsx";
 // import FormHome from "./forms/FormHome.jsx";
 // import FormLogout from "./forms/FormLogout.jsx";
 import "../../styles/dashboard.css";
+import { useAuth } from "../../context/authContext";
 
 const DashboardBase = () => {
   const [sidebarOpen] = useState(false);
+  const { isAuthenticated, logout, user, empleado } = useAuth();
+
   const [activeContent, setActiveContent] = useState("");
 
   return (
@@ -134,23 +137,29 @@ const DashboardBase = () => {
               <span>Configuración</span>
             </Link>
             <li className="nav-item">
+            {isAuthenticated ? (
               <Link
-                className={
-                  activeContent === "logout"
-                    ? "nav-link active"
-                    : "nav-link collapsed"
-                }
-                onClick={() => setActiveContent("logout")}
-              >
-                <FaSignOutAlt
-                  style={{
-                    marginLeft: "0px",
-                    marginRight: "5px",
-                    fontSize: "20px",
-                  }}
-                />
-                <span>Cerrar sesión</span>
-              </Link>
+              className={
+                activeContent === "logout"
+                  ? "nav-link active"
+                  : "nav-link collapsed"
+              }
+              onClick={() => {
+                logout();
+              }}
+            >
+              <FaSignOutAlt
+                style={{
+                  marginLeft: "0px",
+                  marginRight: "5px",
+                  fontSize: "20px",
+                }}
+              />
+              <span>Logout</span>
+            </Link>
+            ) : (
+              <></>
+            )}
             </li>
           </li>
         </ul>

@@ -2,7 +2,8 @@ import * as incomesService from "../services/incomes.services.js";
 
 // Create income
 export async function createIncome(req, res) {
-  const { title, description, amount, user_id, category_id } = req.body;
+  const user_id = req.usuario.id;
+  const { title, description, amount, category_id } = req.body;
   try {
     const newIncome = await incomesService.createIncome(
       title,
@@ -19,7 +20,7 @@ export async function createIncome(req, res) {
 
 // Get all incomes
 export async function getAllIncomes(req, res) {
-  const { user_id } = req.body;
+  const user_id = req.usuario.id;
   try {
     const incomes = await incomesService.getAllIncomes(user_id);
     res.json(incomes);
@@ -30,9 +31,10 @@ export async function getAllIncomes(req, res) {
 
 // Get income
 export async function getIncome(req, res) {
-  const { id, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { id } = req.params;
   try {
-    const income = await incomesService.getIncome(user_id, id);
+    const income = await incomesService.getIncome(id,user_id);
     res.json(income);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -41,7 +43,9 @@ export async function getIncome(req, res) {
 
 // update income
 export async function updateIncome(req, res) {
-  const { id, title, description, amount, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { id } = req.params;
+  const { title, description, amount } = req.body;
   try {
     const incomeUpdate = await incomesService.updateIncome(
       id,
@@ -58,7 +62,8 @@ export async function updateIncome(req, res) {
 
 // Delete income
 export async function deleteIncome(req, res) {
-  const { id, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { id } = req.params;
   try {
     await incomesService.deleteIncome(id, user_id);
     res.sendStatus(204);

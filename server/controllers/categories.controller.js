@@ -2,7 +2,8 @@ import * as categoryService from "../services/categories.services.js";
 
 // Create category
 export async function createCategory(req, res) {
-  const { usuario_id, name_category } = req.body;
+  const usuario_id = req.usuario.id;
+  const { name_category } = req.body;
   try {
     const newCategory = await categoryService.createCategory(
       usuario_id,
@@ -16,7 +17,7 @@ export async function createCategory(req, res) {
 
 // Get all categories
 export async function getAllCategories(req, res) {
-  const { usuario_id } = req.body;
+  const usuario_id = req.usuario.id;
   try {
     const categories = await categoryService.getAllCategories(usuario_id);
     res.json(categories);
@@ -27,7 +28,8 @@ export async function getAllCategories(req, res) {
 
 // Get Category
 export async function getCategory(req, res) {
-  const { usuario_id, id } = req.body;
+  const usuario_id = req.usuario.id;
+  const { id } = req.params;
   try {
     const category = await categoryService.getCategory(usuario_id, id);
     res.json(category);
@@ -38,7 +40,9 @@ export async function getCategory(req, res) {
 
 // update category
 export async function updateCategory(req, res) {
-  const { id, usuario_id, name_category } = req.body;
+  const usuario_id = req.usuario.id;
+  const { id } = req.params;
+  const { name_category } = req.body;
   try {
     const categoryUpdate = await categoryService.updateCategory(
       id,
@@ -53,7 +57,8 @@ export async function updateCategory(req, res) {
 
 // Delete category
 export async function deleteCategory(req, res) {
-  const { id, usuario_id } = req.body;
+  const usuario_id = req.usuario.id;
+  const { id } = req.params;
   try {
     await categoryService.deleteCategory(id, usuario_id);
     res.sendStatus(204);

@@ -5,16 +5,16 @@ import { useCategory } from "../../../context/categoryContext";
 
 function FormCategories() {
   const [categoria, setCategoria] = useState("");
-
   const [formData, setFormData] = useState({
     name_category: "",
   });
   const [id, setId] = useState("");
   const [editar, setEditar] = useState(false);
-  const [filteredCategorias, setFilteredCategorias] = useState([]);
+  const [filteredCategories, setFilteredCategories] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState("");
-  const { createCategory } = useCategory();
+  const { createCategory,
+    getCategory} = useCategory();
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
@@ -40,6 +40,9 @@ function FormCategories() {
       });
     }
   };
+
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -48,6 +51,7 @@ function FormCategories() {
     }));
   };
 
+ 
   const limpiar = () => {
     setFormData({
       name_category: "",
@@ -55,6 +59,7 @@ function FormCategories() {
     setId("");
     setEditar(false);
   };
+  
 
   return (
     <div className="contact" id="contact">

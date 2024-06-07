@@ -2,7 +2,8 @@ import * as expensesService from "../services/expenses.services.js";
 
 // Create expense
 export async function createExpense(req, res) {
-  const { title, description, amount, category_id, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { title, description, amount, category_id } = req.body;
   try {
     const newExpense = await expensesService.createExpense(
       title,
@@ -19,7 +20,7 @@ export async function createExpense(req, res) {
 
 // Get all expenses
 export async function getAllExpenses(req, res) {
-  const { user_id } = req.body;
+  const user_id = req.usuario.id;
   try {
     const expenses = await expensesService.getAllExpenses(user_id);
     res.json(expenses);
@@ -30,7 +31,8 @@ export async function getAllExpenses(req, res) {
 
 // Get expense
 export async function getExpense(req, res) {
-  const { id, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { id } = req.body;
   try {
     const expense = await expensesService.getExpense(user_id, id);
     res.json(expense);
@@ -41,7 +43,9 @@ export async function getExpense(req, res) {
 
 // update expense
 export async function updateExpense(req, res) {
-  const { id, title, description, amount, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const {id} = req.params;
+  const { title, description, amount } = req.body;
   try {
     const expenseUpdate = await expensesService.updateExpense(
       id,
@@ -58,7 +62,8 @@ export async function updateExpense(req, res) {
 
 // Delete expense
 export async function deleteExpense(req, res) {
-  const { id, user_id } = req.body;
+  const user_id = req.usuario.id;
+  const { id } = req.params;
   try {
     await expensesService.deleteExpense(id, user_id);
     res.sendStatus(204);
