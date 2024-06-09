@@ -55,7 +55,7 @@
 
 .sidebar-nav-bottom {
   margin-top: auto; /* Empuja hacia abajo Configuración y Logout */
-  margin-bottom: 80px; /* Agrega un margen inferior */
+  margin-bottom: 74px; /* Agrega un margen inferior */
 }
 
 .nav-item {
@@ -87,6 +87,11 @@
 .nav-link .fa-icon {
   margin-right: 10px;
   font-size: 1.25rem;
+}
+.iconsFa{
+  margin-left: 0px;
+  margin-right: 5px;
+  font-size: 20px;
 }
 
 .main {
