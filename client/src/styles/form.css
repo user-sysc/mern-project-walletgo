@@ -1,11 +1,10 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
 
-:root[data-theme="light"] {
-  --color1: #ffffff;
-  --color2: #ebeef1;
-  --color3: #f7f7f8;
-  --text-color: #1c1c1f;
-  --button-text: #1c1c1f;
+:root{
+  --azul1: #5383e8;
+  --azul2: #375db1;
+  --rojo1: #f44336;
+  --rojo2: #d32f2f;
 }
 
 :root[data-theme="dark"] {
@@ -14,6 +13,7 @@
   --color3: #24242a;
   --text-color: #ebeef1;
   --button-text: white;
+  --placeholder: #ebeef188;
 }
 
 * {
@@ -23,14 +23,19 @@
   box-sizing: border-box;
 }
 
-.main {
-  background-color: var(--color2);
+.pagetitle{
+  margin-bottom: 5px;
 }
 
 .w-full.h-full {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.w-full.h-full-2{
+  display: flex;
+  flex-direction: row;
 }
 
 .header-comp {
@@ -52,6 +57,9 @@
   grid-template-columns: 1fr;
   gap: 2rem;
   color: whitesmoke;
+  padding-left: 5px;
+  padding-top: 5px;
+  
 }
 
 .sub-titles-copm {
@@ -70,9 +78,9 @@
 }
 
 .card {
-  background-color: var(--color1);
+  background-color: #12161C;
   border-radius: 1.5rem;
-  padding: 1.5rem;
+  padding: 3rem;
   margin-top: 1rem;
 }
 
@@ -109,16 +117,12 @@
   margin-bottom: -0.01rem;
 }
 
-.card input::-webkit-input-placeholder {
-  color: var(--text-color);
-}
-
 .card button {
   width: 40%;
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: #5383e8;
+  background-color: #25B244;
   color: white;
   font-size: 0.9rem;
   cursor: pointer;
@@ -130,7 +134,7 @@
 }
 
 .card button:hover {
-  background-color: #375db1;
+  background-color: #25B244;
 }
 
 .card button[type="submit_2"] {
@@ -138,7 +142,7 @@
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: #053C5E;
+  background-color: var(--azul1);
   color: white;
   font-size: 0.9rem;
   cursor: pointer;
@@ -150,12 +154,16 @@
   margin-top: 20px;
 }
 
+.card button[type="submit_2"]:hover {
+  background-color: var(--azul2);
+}
+
 .card button[type="button"] {
   width: 20%;
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: #f44336;
+  background-color: var(--rojo1);
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
@@ -166,8 +174,12 @@
   margin-top: 20px;
 }
 
+.card button[type="button"]:hover {
+  background-color: var(--rojo2);
+}
+
 .edit-button {
-  background-color: #2196f3;
+  background-color: var(--azul1);
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -182,7 +194,7 @@
 }
 
 .delete-button {
-  background-color: #f44336;
+  background-color: var(--rojo1);
   color: #fff;
   padding: 0.5rem 1rem;
   border: none;
@@ -194,11 +206,11 @@
 }
 
 .edit-button:hover {
-  background-color: #0b7dda;
+  background-color: var(--azul2);
 }
 
 .delete-button:hover {
-  background-color: #d32f2f;
+  background-color: var(--rojo2);
 }
 
 /*CSS TABLAS*/
@@ -219,8 +231,9 @@
 .table-card table th,
 .table-card table td {
   padding: 0.75rem;
-  border: 1px solid var(--color2);
-  background-color: var(--color1);
+  border: 1px solid #12161C;
+  background-color: #12161C;
+  color: #fff;
 }
 
 .table-card table td {
@@ -248,7 +261,7 @@
   background-color: var(--color3);
 }
 
-/* CSS PARA EL GRID DE PRODUCTOS */
+/* CSS PARA EL GRID DE INGRESOS */
 
 .grid-container {
   display: grid;
@@ -270,25 +283,24 @@
   margin-bottom: 1rem;
 }
 
+.search-bar input{
+  margin-right: 1rem;
+}
+
 .search-bar input,
 .search-bar select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--color2);
+  border: 1px solid #12161C;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   margin-bottom: -0.3rem;
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
   font-size: 0.8rem;
   font-weight: normal;
   font-family: "Poppins", sans-serif;
-  color: var(--text-color);
-  background-color: var(--color1);
-}
-
-.search-bar input::-webkit-input-placeholder,
-.search-bar select::-webkit-input-placeholder {
-  color: var(--text-color);
+  color: #fff;
+  background-color: #12161C;
 }
 
 .search-bar input:focus,
@@ -535,4 +547,10 @@
 
 .total-venta {
   color: whitesmoke;
+}
+
+.card input::placeholder,
+.search-bar input::placeholder,
+.grid-container input::placeholder{
+  color: var(--placeholder);
 }

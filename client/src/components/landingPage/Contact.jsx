@@ -1,4 +1,4 @@
-import "../../styles/Contact.css";
+import "../../styles/contact.css";
 import Swal from "sweetalert2";
 import { useState } from "react";
 

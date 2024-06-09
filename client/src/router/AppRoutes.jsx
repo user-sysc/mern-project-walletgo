@@ -21,7 +21,7 @@ function AppRoutes() {
               <BrowserRouter>
                 <Routes>
                   {/* Ruta para el HOME */}
-                  <Route path="/" element={<HomeBase />} />
+                  <Route path="/" element={<DashboardBase />} />
                   {/* Ruta para la página de Login */}
                   <Route path="/Login" element={<LoginPage />} />
                   {/* Ruta para la página de Signup */}
