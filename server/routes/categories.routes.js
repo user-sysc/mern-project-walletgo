@@ -14,10 +14,4 @@ router.delete(
   CategoryController.deleteCategory
 ); // delete category
 
-// router.post("/category", CategoryController.createCategory); //create category
-// router.get("/categories", CategoryController.getAllCategories); // get all categories
-// router.get("/categories/:id", CategoryController.getCategory); // get category
-// router.put("/categories/:id", CategoryController.updateCategory); // update category
-// router.delete("/categories/:id", CategoryController.deleteCategory); // delete category
-
 export default router;

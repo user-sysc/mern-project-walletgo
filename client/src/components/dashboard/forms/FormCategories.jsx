@@ -13,8 +13,7 @@ function FormCategories() {
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState("");
-  const { createCategory,
-    getCategory} = useCategory();
+  const { createCategory, getCategory } = useCategory();
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
@@ -22,9 +21,12 @@ function FormCategories() {
       await createCategory(formData);
       limpiar();
       Swal.fire({
+        title: '<strong style="color: white;">¡Registro exitoso!</strong>',
+        html: '<i style="color: white;">La categoria se ha registrado correctamente</i>',
         icon: "success",
-        title: "¡Registro exitoso!",
-        text: "La categoria ha sido registrado correctamente.",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 2000,
       });
       setFormData({
         name_category: "",
@@ -33,15 +35,16 @@ function FormCategories() {
     } catch (error) {
       setError(error.response.data.message);
       Swal.fire({
-        icon: "error",
-        title: "¡Error!",
-        text: error.response.data.message,
-        footer: error,
+        title: '<strong style="color: white;">¡ERROR!</strong>',
+        html: '<i style="color: white;">Ha ocurrido un error al intentar registrar la categoria</i>',
+        icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 3000,
+        footer: `<p style="color: white;">${error.message}</p>`,
       });
     }
   };
-
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,7 +54,6 @@ function FormCategories() {
     }));
   };
 
- 
   const limpiar = () => {
     setFormData({
       name_category: "",
@@ -59,7 +61,6 @@ function FormCategories() {
     setId("");
     setEditar(false);
   };
-  
 
   return (
     <div className="contact" id="contact">

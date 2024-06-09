@@ -25,7 +25,7 @@ function LoginPage() {
 
   const { signin } = useAuth();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     // Verificar si los campos están vacíos
     if (!formData.email || !formData.password) {

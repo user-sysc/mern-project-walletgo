@@ -1,4 +1,4 @@
-// import { useCategory } from "../../../context/categoryContext";
+import { useCategory } from "../../../context/categoryContext";
 import { useExpense } from "../../../context/expenseContext";
 import "../../../styles/form.css";
 import { useState } from "react";
@@ -20,7 +20,7 @@ function FormExpenses() {
   const [filteredExpenses, setFilteredExpenses] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState("");
-  // const { getCategory, categorias } = useCategory();
+  const { getCategory, categories } = useCategory();
   const [formData, setFormData] = useState({
     titulo: "",
     descripcion: "",
@@ -97,14 +97,14 @@ function FormExpenses() {
             <PolarAngleAxis dataKey="subject" />
             <PolarRadiusAxis angle={30} domain={[0, 150]} />
             <Radar
-              name="Mike"
+              name="Expeneses"
               dataKey="A"
               stroke="#8884d8"
               fill="#8884d8"
               fillOpacity={0.6}
             />
             <Radar
-              name="Lily"
+              name="Incomes"
               dataKey="B"
               stroke="#82ca9d"
               fill="#82ca9d"
@@ -161,8 +161,19 @@ function FormExpenses() {
                 </div>
                 <div className="grid-item">
                   <label htmlFor="idCategoria">Categoría</label>
-                  <select id="idCategoria" name="idCategoria" required>
+                  <select
+                    id="idCategoria"
+                    name="idCategoria"
+                    value={formData.categoria}
+                    onChange={handleChange}
+                    required
+                  >
                     <option value="">...</option>
+                    {categories.map((categoria) => (
+                      <option key={categoria.id} value={categoria.id}>
+                        {categoria.name_category}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

@@ -1,7 +1,9 @@
-import "../../../styles/form.css";
-import { useState } from "react";
+import { useCategory } from "../../../context/categoryContext";
 import { useIncome } from "../../../context/incomeContext";
-// import { useCategory } from "../../../context/categoryContext";
+import { useAuth } from "../../../context/authContext";
+import "../../../styles/form.css";
+import Swal from "sweetalert2";
+import { useState, useEffect } from "react";
 
 import { PureComponent } from "react";
 import {
@@ -20,15 +22,17 @@ function FormIncomes() {
   const [filteredIncomes, setFilteredIncomes] = useState([]);
   const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState("");
-  // const { getCategory, categorias } = useCategory();
+
+  const { createIncome, getIncome, incomes } = useIncome();
+  const { getCategory, categories } = useCategory();
+  const { user } = useAuth();
+
   const [formData, setFormData] = useState({
     titulo: "",
     descripcion: "",
     monto: "",
     categoria: "",
   });
-  const { createIncome, getIncome, incomes, deleteIncome, updateIncome } =
-    useIncome();
 
   const clean = () => {
     setFormData({
@@ -41,6 +45,14 @@ function FormIncomes() {
     setEditar(false);
   };
 
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  useEffect(() => {
+    setFilteredIncomes(incomes);
+  }, [incomes]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -49,6 +61,48 @@ function FormIncomes() {
     }));
   };
 
+  const getCategoryName = (id) => {
+    const categoria = categories.find((cat) => cat.id === id);
+    return categoria ? categoria.name_category : "Desconocida";
+  };
+  const handleCreateIncome = async (e) => {
+    e.preventDefault();
+    if (!formData.titulo || !formData.descripcion || !formData.monto) {
+      Swal.fire({
+        title:
+          '<strong style="color: white;">Todos los campos son obligatorios</strong>',
+        icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 2000,
+      });
+      return;
+    }
+    try {
+      await createIncome(formData);
+      Swal.fire({
+        title: '<strong style="color: white;">¡Registro exitoso!</strong>',
+        html: '<i style="color: white;">El ingreso se ha registrado correctamente</i>',
+        icon: "success",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 2000,
+      });
+      clean();
+      await getIncome();
+    } catch (error) {
+      setError(error.response.data.message);
+      Swal.fire({
+        title: '<strong style="color: white;">¡ERROR!</strong>',
+        html: '<i style="color: white;">Ha ocurrido un error al intentar registrar el ingreso</i>',
+        icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 3000,
+        footer: `<p style="color: white;">${error.message}</p>`,
+      });
+    }
+  };
   const data = [
     {
       subject: "Math",
@@ -97,14 +151,14 @@ function FormIncomes() {
             <PolarAngleAxis dataKey="subject" />
             <PolarRadiusAxis angle={30} domain={[0, 150]} />
             <Radar
-              name="Mike"
+              name="Expenses"
               dataKey="A"
               stroke="#8884d8"
               fill="#8884d8"
               fillOpacity={0.6}
             />
             <Radar
-              name="Lily"
+              name="Incomes"
               dataKey="B"
               stroke="#82ca9d"
               fill="#82ca9d"
@@ -119,90 +173,115 @@ function FormIncomes() {
 
   return (
     <div className="w-full h-full">
-      <div className="w-full h-full-2">
-        <div className="form-comp">
-          <div className="card">
-            <h1 className="sub-titles-copm">Nuevo Ingreso</h1>
-            <form>
-              <div className="grid-container">
-                <div className="grid-item">
-                  <label htmlFor="title">Titulo</label>
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="..."
-                    value={formData.titulo}
-                    autoComplete="off"
-                    required
-                  />
-                </div>
-                <div className="grid-item">
-                  <label htmlFor="description">Descripción</label>
-                  <input
-                    type="text"
-                    id="description"
-                    name="description"
-                    placeholder="..."
-                    value={formData.descripcion}
-                    autoComplete="off"
-                    required
-                  />
-                </div>
-                <div className="grid-item">
-                  <label htmlFor="amount">Monto</label>
-                  <input
-                    type="number"
-                    id="amount"
-                    name="amount"
-                    placeholder="..."
-                    value={formData.monto}
-                  />
-                </div>
-                <div className="grid-item">
-                  <label htmlFor="idCategoria">Categoría</label>
-                  <select id="idCategoria" name="idCategoria" required>
-                    <option value="">Seleccione una categoría</option>
-                  </select>
-                </div>
+      {user && (
+        <>
+          <div className="w-full h-full-2">
+            <div className="form-comp">
+              <div className="card">
+                <h1 className="sub-titles-copm">Nuevo Ingreso</h1>
+                <form onSubmit={handleCreateIncome}>
+                  <div className="grid-container">
+                    <div className="grid-item">
+                      <label htmlFor="titulo">Titulo</label>
+                      <input
+                        type="text"
+                        id="titulo"
+                        name="titulo"
+                        placeholder="..."
+                        value={formData.titulo}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="grid-item">
+                      <label htmlFor="descripcion">Descripción</label>
+                      <input
+                        type="text"
+                        id="descripcion"
+                        name="descripcion"
+                        placeholder="..."
+                        value={formData.descripcion}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="grid-item">
+                      <label htmlFor="monto">Monto</label>
+                      <input
+                        type="number"
+                        id="monto"
+                        name="monto"
+                        placeholder="..."
+                        value={formData.monto}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="grid-item">
+                      <label htmlFor="categoria">Categoría</label>
+                      <select
+                        id="categoria"
+                        name="categoria"
+                        value={formData.categoria}
+                        onChange={handleChange}
+                      >
+                        <option value="">...</option>
+                        {categories.map((categoria) => (
+                          <option key={categoria.id} value={categoria.id}>
+                            {categoria.name_category}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <button type="submit">Agregar Ingreso</button>
+                  </div>
+                </form>
               </div>
-              <div>
-                <button type="submit">Agregar Ingreso</button>
-              </div>
-            </form>
+            </div>
+            <div className="form-graph">
+              <Example />
+            </div>
           </div>
-        </div>
-        <div className="form-graph">
-          <Example />
-        </div>
-      </div>
 
-      <div className="table-card">
-        <div className="search-bar">
-          <input
-            type="text"
-            id="producto-filter"
-            name="producto-filter"
-            placeholder="Filtrar ingresos"
-            autoComplete="off"
-          />
-          <select id="categoria-filter" name="categoria-filter">
-            <option value="">Seleccione una categoría</option>
-          </select>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Titulo</th>
-              <th>Descripción</th>
-              <th>Monto</th>
-              <th>Categoria</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
+          <div className="table-card">
+            <div className="search-bar">
+              <input
+                type="text"
+                id="producto-filter"
+                name="producto-filter"
+                placeholder="Filtrar ingresos"
+                autoComplete="off"
+              />
+              <select id="categoria-filter" name="categoria-filter">
+                <option value="">Seleccione una categoría</option>
+              </select>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Titulo</th>
+                  <th>Descripción</th>
+                  <th>Monto</th>
+                  <th>Categoria</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredIncomes.map((val, key) => {
+                  return (
+                    <tr key={val.id}>
+                      <td>{val.titulo}</td>
+                      <td>{val.descripcion}</td>
+                      <td>{val.monto}</td>
+                      <td>{getCategoryName(val.idCategoria)}</td>
+                      <td>{val.createdAT}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
     </div>
   );
 }
