@@ -23,6 +23,19 @@
   box-sizing: border-box;
 }
 
+.form-graph {
+  width: 50%;
+  height: 450px; /* Ajusta este valor según tus necesidades */
+  background-color: #12161C; /* Cambia este valor al color oscuro que prefieras */
+  padding: 20px; /* Añade un padding para darle espacio a la gráfica dentro del cuadro */
+  border-radius: 1.1rem;
+  margin-bottom: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding: 1.5rem;
+}
+
+
 .pagetitle{
   margin-bottom: 5px;
 }
@@ -51,6 +64,8 @@
 }
 
 .form-comp {
+  width: 52%;
+  height: 475px; /* Ajusta este valor según tus necesidades */
   font-weight: bold;
   padding: 1.5rem;
   display: grid;
@@ -58,8 +73,8 @@
   gap: 2rem;
   color: whitesmoke;
   padding-left: 5px;
-  padding-top: 5px;
-  
+  padding-top: 1px;
+
 }
 
 .sub-titles-copm {
@@ -79,22 +94,22 @@
 
 .card {
   background-color: #12161C;
-  border-radius: 1.5rem;
-  padding: 3rem;
-  margin-top: 1rem;
+  border-radius: 1.1rem;
+  padding: 2rem;
+  /* margin-top: 1rem; */
 }
 
 .card label {
   color: var(--text-color);
   font-weight: bold;
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.4rem;
   font-size: 13px;
 }
 
 .card input,
 .card select {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.45rem;
   border: 1px solid var(--color2);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
@@ -103,13 +118,14 @@
   font-weight: normal;
   font-family: "Poppins", sans-serif;
   color: var(--text-color);
-  background-color: var(--color2);
+  background-color: #1B1F28;
 }
 
 .card input:focus,
 .card select:focus {
-  border: 2px solid #5383e8;
-  outline: none;
+  border: none;
+  /* outline: none; */
+  outline-color: #25B244;
 }
 
 .grid-item input,
@@ -118,19 +134,20 @@
 }
 
 .card button {
-  width: 40%;
-  padding: 0.75rem 1rem;
+  width: 100%;
+  padding: 0.6rem;
   border: none;
   border-radius: 1rem;
   background-color: #25B244;
   color: white;
-  font-size: 0.9rem;
+  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
-  position: relative;
+  /* position: relative; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   left: 30%;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .card button:hover {
@@ -175,41 +192,6 @@
 }
 
 .card button[type="button"]:hover {
-  background-color: var(--rojo2);
-}
-
-.edit-button {
-  background-color: var(--azul1);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.8rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-right: 0.5rem;
-  margin-left: 1rem;
-  text-decoration: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 0.85rem;
-}
-
-.delete-button {
-  background-color: var(--rojo1);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.8rem;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin-right: 0.5rem;
-}
-
-.edit-button:hover {
-  background-color: var(--azul2);
-}
-
-.delete-button:hover {
   background-color: var(--rojo2);
 }
 
@@ -264,9 +246,10 @@
 /* CSS PARA EL GRID DE INGRESOS */
 
 .grid-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
 .grid-item {
@@ -301,7 +284,7 @@
   font-family: "Poppins", sans-serif;
   color: #fff;
   background-color: #12161C;
-}
+  margin-top: 15px;}
 
 .search-bar input:focus,
 .search-bar select:focus {
@@ -309,248 +292,3 @@
   outline: none;
 }
 
-/* CSS para venta */
-
-.card button[type="button-venta"] {
-  width: 80%;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: #1e2736;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-  left: 60%;
-  margin-top: 50px;
-}
-
-.table-card h3 {
-  margin-top: 20px;
-}
-
-.table-card button[type="button-registrar-venta"] {
-  width: 20%;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: #2196f3;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  position: relative;
-  left: 0%;
-  margin-top: 20px;
-}
-
-/* CSS detalle de la venta */
-
-.table-card table {
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.detalle-venta-card {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  background-color: var(--color1);
-  border: 1px solid var(--color2);
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  opacity: 0;
-  animation: enterAnimation 0.5s ease forwards;
-  font-family: "Poppins", sans-serif;
-}
-
-@keyframes enterAnimation {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes exitAnimation {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  to {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
-  }
-}
-
-.detalle-venta-card.exiting {
-  animation: exitAnimation 0.5s ease forwards;
-}
-
-.detalle-venta-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--text-color);
-  padding-bottom: 0.5rem;
-}
-
-.detalle-venta-card p,
-.detalle-venta-card li {
-  margin: 0.5rem 0;
-}
-
-.detalle-venta-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.detalle-venta-card li {
-  border-bottom: 1px solid var(--text-color);
-  padding: 0.5rem 0;
-}
-
-.detalle-venta-card strong {
-  display: inline-block;
-  width: 150px;
-}
-
-.detalle-venta-card .total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding-top: 0.5rem;
-  margin-top: 0.5rem;
-  text-align: right;
-}
-
-.detalle-venta-card button {
-  display: block;
-  margin: 1rem auto 0;
-  padding: 0.5rem 1rem;
-  background-color: #f44336;
-  color: #fff;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.detalle-venta-card button:hover {
-  background-color: #d32f2f;
-}
-
-.detalle-card-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: -40px;
-}
-
-.detalle-card-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: -40px;
-}
-
-.report-button-card button {
-  background-color: #3F88C5;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin-right: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.report-button-card button:hover {
-  background-color: #326894;
-}
-
-.cerrar-button-card button {
-  background-color: #f44336;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin-right: 0.5rem;
-  margin: 0 auto;
-}
-
-.print-button-container button {
-  background-color: #2E4057;
-  color: #fff;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin-top: 0rem;
-  margin-left: 95rem;
-}
-
-.print-button-container button:hover {
-  background-color: #2b3a50;
-}
-
-.print-button-container-empleado button {
-  background-color: #2E4057;
-  color: #fff;
-  border: none;
-  border-radius: 1em;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s;
-  margin-top: 0rem;
-  margin-left: 98rem;
-}
-
-.print-button-container-empleado button:hover {
-  background-color: #2b3a50;
-}
-
-
-.cerrar-button-card button:hover {
-  background-color: #d32f2f;
-}
-
-.total-venta {
-  color: whitesmoke;
-}
-
-.card input::placeholder,
-.search-bar input::placeholder,
-.grid-container input::placeholder{
-  color: var(--placeholder);
-}

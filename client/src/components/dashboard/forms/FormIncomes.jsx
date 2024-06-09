@@ -157,7 +157,6 @@ function FormIncomes() {
                     name="amount"
                     placeholder="..."
                     value={formData.monto}
-                    autoComplete="off"
                   />
                 </div>
                 <div className="grid-item">
@@ -168,8 +167,7 @@ function FormIncomes() {
                 </div>
               </div>
               <div>
-                <button>editar</button>
-                <button type="button">Cancelar</button>
+                <button type="submit">Agregar Ingreso</button>
               </div>
             </form>
           </div>
@@ -180,7 +178,6 @@ function FormIncomes() {
       </div>
 
       <div className="table-card">
-        {/* <h1 className="sub-titles-copm">Productos Registrados</h1> */}
         <div className="search-bar">
           <input
             type="text"
@@ -207,73 +204,6 @@ function FormIncomes() {
         </table>
       </div>
     </div>
-
-    // <div className="area-content">
-    //   <div className="area--form">
-    //     <div className="card-form">
-    //       <h1 className="h1-form"> Agregar Ingreso</h1>
-    //       <form className="area-form" onSubmit={handleSubmit}>
-    //         <label className="label-form" htmlFor="titulo">
-    //           Título
-    //         </label>
-    //         <input
-    //           className="input-form"
-    //           name="titulo"
-    //           placeholder="..."
-    //           type="text"
-    //           value={titulo}
-    //           onChange={(e) => setTitulo(e.target.value)}
-    //           required
-    //         />
-    //         <label className="label-form" htmlFor="descripcion">
-    //           Descripción
-    //         </label>
-    //         <input
-    //           className="input-form"
-    //           name="descripcion"
-    //           placeholder="..."
-    //           type="text"
-    //           value={descripcion}
-    //           onChange={(e) => setDescripcion(e.target.value)}
-    //           required
-    //         />
-    //         <label className="label-form" htmlFor="monto">
-    //           Monto
-    //         </label>
-    //         <input
-    //           className="input-form"
-    //           name="monto"
-    //           placeholder="..."
-    //           type="number"
-    //           value={monto}
-    //           onChange={(e) => setMonto(e.target.value)}
-    //           required
-    //         />
-    //         <label className="label-form" htmlFor="categoria">
-    //           Categoría
-    //         </label>
-    //         <select
-    //           className="input-form"
-    //           name="categoria"
-    //           value={categoria}
-    //           onChange={(e) => setCategoria(e.target.value)}
-    //           required
-    //         >
-    //           <option value="">Selecciona una categoría</option>
-    //           {categorias.map((cat, index) => (
-    //             <option key={index} value={cat}>
-    //               {cat}
-    //             </option>
-    //           ))}
-    //         </select>
-    //         <button className="buton-form" type="submit">
-    //           {" "}
-    //           Agregar Ingreso
-    //         </button>
-    //       </form>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 
