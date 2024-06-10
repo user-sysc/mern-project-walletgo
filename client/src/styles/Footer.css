@@ -19,10 +19,11 @@
 .socialMedia svg {
   color: white;
   margin: 20px;
-  font-size: 50px;
+  font-size: 45px;
   cursor: pointer;
 }
 
 .footer p {
   color: white;
+  font-size: 15px;
 }

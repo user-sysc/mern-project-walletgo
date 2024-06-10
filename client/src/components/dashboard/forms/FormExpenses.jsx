@@ -18,7 +18,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function FormIncomes() {
+function FormExpenses() {
   const [id, setId] = useState("");
   const [error, setError] = useState("");
   const [editar, setEditar] = useState(false);
@@ -159,7 +159,6 @@ function FormIncomes() {
     });
     setId(val.id);
   };
-  //
   const handleEditClick = (expense) => {
     Swal.fire({
       title: "Actualizar Egreso",
@@ -363,7 +362,7 @@ function FormIncomes() {
           <div className="w-full h-full-2">
             <div className="form-comp">
               <div className="card">
-                <h1 className="sub-titles-copm">Nuevo Ingreso</h1>
+                <h1 className="sub-titles-copm">Nuevo Egreso</h1>
                 <form onSubmit={handleCreateExpense}>
                   <div className="grid-container">
                     <div className="grid-item">
@@ -417,7 +416,7 @@ function FormIncomes() {
                     </div>
                   </div>
                   <div>
-                    <button type="submit">Agregar Ingreso</button>
+                    <button type="submit">Agregar Egreso</button>
                   </div>
                 </form>
               </div>
@@ -433,7 +432,7 @@ function FormIncomes() {
                 type="text"
                 id="producto-filter"
                 name="producto-filter"
-                placeholder="Filtrar Ingresos"
+                placeholder="Filtrar Egresos"
                 autoComplete="off"
                 value={filterValue}
                 onChange={handleFilterChangeExpense}
@@ -496,4 +495,4 @@ function FormIncomes() {
   );
 }
 
-export default FormIncomes;
+export default FormExpenses;
