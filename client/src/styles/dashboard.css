@@ -21,6 +21,7 @@
 .nombrelogo {
   font-size: 1.5rem;
   font-weight: bold;
+  user-select: none;
 }
 
 .welcome-message {
