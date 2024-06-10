@@ -1,7 +1,7 @@
 import { BiLogoInstagram } from "react-icons/bi";
 import { BiLogoTwitter } from "react-icons/bi";
 import { BiLogoGithub } from "react-icons/bi";
-import "../../styles/footer.css";
+import "../../styles/Footer.css";
 
 function Footer() {
   return (

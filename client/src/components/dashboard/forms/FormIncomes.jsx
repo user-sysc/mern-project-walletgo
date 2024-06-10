@@ -23,23 +23,24 @@ function FormIncomes() {
   const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState("");
 
-  const { createIncome, getIncome, incomes } = useIncome();
+  const { createIncome, getIncome, incomes, deleteIncome, updateIncome } =
+    useIncome();
   const { getCategory, categories } = useCategory();
   const { user } = useAuth();
 
   const [formData, setFormData] = useState({
-    titulo: "",
-    descripcion: "",
-    monto: "",
-    categoria: "",
+    title: "",
+    description: "",
+    amount: "",
+    category_id: "",
   });
 
   const clean = () => {
     setFormData({
-      titulo: "",
-      descripcion: "",
-      monto: "",
-      categoria: "",
+      title: "",
+      description: "",
+      amount: "",
+      category_id: "",
     });
     setId("");
     setEditar(false);
@@ -47,6 +48,7 @@ function FormIncomes() {
 
   useEffect(() => {
     getCategory();
+    getIncome();
   }, []);
 
   useEffect(() => {
@@ -67,7 +69,7 @@ function FormIncomes() {
   };
   const handleCreateIncome = async (e) => {
     e.preventDefault();
-    if (!formData.titulo || !formData.descripcion || !formData.monto) {
+    if (!formData.title || !formData.description || !formData.amount) {
       Swal.fire({
         title:
           '<strong style="color: white;">Todos los campos son obligatorios</strong>',
@@ -79,6 +81,7 @@ function FormIncomes() {
       return;
     }
     try {
+      console.log(formData);
       await createIncome(formData);
       Swal.fire({
         title: '<strong style="color: white;">¡Registro exitoso!</strong>',
@@ -88,7 +91,12 @@ function FormIncomes() {
         confirmButtonColor: "#1DB13E",
         timer: 2000,
       });
-      clean();
+      setFormData({
+        title: "",
+        description: "",
+        amount: "",
+        category_id: "",
+      });
       await getIncome();
     } catch (error) {
       setError(error.response.data.message);
@@ -99,7 +107,7 @@ function FormIncomes() {
         background: "#12151E",
         confirmButtonColor: "#1DB13E",
         timer: 3000,
-        footer: `<p style="color: white;">${error.message}</p>`,
+        footer: `<p style="color: white;">${error.response.data.message}</p>`,
       });
     }
   };
@@ -182,44 +190,44 @@ function FormIncomes() {
                 <form onSubmit={handleCreateIncome}>
                   <div className="grid-container">
                     <div className="grid-item">
-                      <label htmlFor="titulo">Titulo</label>
+                      <label htmlFor="title">Titulo</label>
                       <input
                         type="text"
-                        id="titulo"
-                        name="titulo"
+                        id="title"
+                        name="title"
                         placeholder="..."
-                        value={formData.titulo}
+                        value={formData.title}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="grid-item">
-                      <label htmlFor="descripcion">Descripción</label>
+                      <label htmlFor="description">Descripción</label>
                       <input
                         type="text"
-                        id="descripcion"
-                        name="descripcion"
+                        id="description"
+                        name="description"
                         placeholder="..."
-                        value={formData.descripcion}
+                        value={formData.description}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="grid-item">
-                      <label htmlFor="monto">Monto</label>
+                      <label htmlFor="amount">Monto</label>
                       <input
                         type="number"
-                        id="monto"
-                        name="monto"
+                        id="amount"
+                        name="amount"
                         placeholder="..."
-                        value={formData.monto}
+                        value={formData.amount}
                         onChange={handleChange}
                       />
                     </div>
                     <div className="grid-item">
-                      <label htmlFor="categoria">Categoría</label>
+                      <label htmlFor="category_id">Categoría</label>
                       <select
-                        id="categoria"
-                        name="categoria"
-                        value={formData.categoria}
+                        id="category_id"
+                        name="category_id"
+                        value={formData.category_id}
                         onChange={handleChange}
                       >
                         <option value="">...</option>
@@ -253,6 +261,11 @@ function FormIncomes() {
               />
               <select id="categoria-filter" name="categoria-filter">
                 <option value="">Seleccione una categoría</option>
+                {categories.map((categoria) => (
+                  <option key={categoria.id} value={categoria.id}>
+                    {categoria.name_category}
+                  </option>
+                ))}
               </select>
             </div>
             <table>

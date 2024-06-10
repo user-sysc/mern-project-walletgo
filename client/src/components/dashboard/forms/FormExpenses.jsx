@@ -22,20 +22,20 @@ function FormExpenses() {
   const [error, setError] = useState("");
   const { getCategory, categories } = useCategory();
   const [formData, setFormData] = useState({
-    titulo: "",
-    descripcion: "",
-    monto: "",
-    categoria: "",
+    title: "",
+    description: "",
+    amount: "",
+    category_id: "",
   });
   const { createExpense, getExpense, expenses, deleteExpense, updateExpense } =
     useExpense();
 
   const clean = () => {
     setFormData({
-      titulo: "",
-      descripcion: "",
-      monto: "",
-      categoria: "",
+      title: "",
+      description: "",
+      amount: "",
+      category_id: "",
     });
     setId("");
     setEditar(false);
@@ -132,9 +132,8 @@ function FormExpenses() {
                     id="title"
                     name="title"
                     placeholder="..."
-                    value={formData.titulo}
-                    autoComplete="off"
-                    required
+                    value={formData.title}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="grid-item">
@@ -144,9 +143,8 @@ function FormExpenses() {
                     id="description"
                     name="description"
                     placeholder="..."
-                    value={formData.descripcion}
-                    autoComplete="off"
-                    required
+                    value={formData.description}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="grid-item">
@@ -156,15 +154,16 @@ function FormExpenses() {
                     id="amount"
                     name="amount"
                     placeholder="..."
-                    value={formData.monto}
+                    value={formData.amount}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="grid-item">
-                  <label htmlFor="idCategoria">Categoría</label>
+                  <label htmlFor="category_id">Categoría</label>
                   <select
-                    id="idCategoria"
-                    name="idCategoria"
-                    value={formData.categoria}
+                    id="category_id"
+                    name="category_id"
+                    value={formData.category_id}
                     onChange={handleChange}
                     required
                   >
@@ -178,7 +177,7 @@ function FormExpenses() {
                 </div>
               </div>
               <div>
-                <button type="submit">Agregar Ingreso</button>
+                <button type="submit">Agregar Egreso</button>
               </div>
             </form>
           </div>
@@ -194,11 +193,16 @@ function FormExpenses() {
             type="text"
             id="producto-filter"
             name="producto-filter"
-            placeholder="Filtrar ingresos"
+            placeholder="Filtrar Egresos"
             autoComplete="off"
           />
           <select id="categoria-filter" name="categoria-filter">
             <option value="">Seleccione una categoría</option>
+            {categories.map((categoria) => (
+              <option key={categoria.id} value={categoria.id}>
+                {categoria.name_category}
+              </option>
+            ))}
           </select>
         </div>
         <table>
