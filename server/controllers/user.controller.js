@@ -3,16 +3,6 @@ import { Usuario } from "../models/User.js";
 import { TOKEN_SECRET } from "../config.js";
 import jwt from "jsonwebtoken";
 
-// export async function createUsuario(req, res) {
-//   const { name, email, password } = req.body;
-//   try {
-//     const newUser = await UserService.createUser(name, email, password);
-//     res.json(newUser);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// }
-
 export const createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;

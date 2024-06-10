@@ -12,6 +12,74 @@
   }
   
 
+  .contact-s .rightSide-s {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--second);
+    padding: 2em;
+    border-radius: 20px;
+}
+.contact-s .rightSide-s h1 {
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+.label-contact-s {
+  color: #fff;
+  margin-bottom: 0.5em;
+  font-size: 15px;
+}
+.input-contact-s, .textarea-s {
+  width: 685px;
+  padding: 0.8em;
+  resize: none;
+  border-radius: 9px;
+  border: none;
+  outline-color: var(--button);
+  background-color: var(--inputs);
+  color: #fff;
+  margin-bottom: 1em;
+}
+.contact-form-s {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.contact-s {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+}
+.buton-form-s {
+  background-color: var(--button);
+  color: #fff;
+  transition: var(--transition);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 18px;
+}
+.buton-form-s-delete {
+  background-color: var(--button);
+  color: #fff;
+  transition: var(--transition);
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 100%; /* Cambia esto al ancho que desees */
+}
+
+
+
+
   .card-form {
     width: 750px; /* Cambia esto al ancho que desees */
     height:500px; /* Cambia esto a la altura que desees */

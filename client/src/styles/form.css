@@ -104,12 +104,14 @@
   font-family: "Poppins", sans-serif;
   color: #fff;
   background-color: #1B1F28;
+  
 }
 
 .card input:focus,
 .card select:focus {
   border: 2px solid #25B244;;
   outline: none;
+  outline-color: #25B244;
 }
 
 .grid-item input,

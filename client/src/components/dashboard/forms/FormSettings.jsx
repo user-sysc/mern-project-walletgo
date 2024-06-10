@@ -1,11 +1,13 @@
+import { useAuth } from "../../../context/authContext";
 import "../../../styles/forms.css";
-import Swal from "sweetalert2";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 function FormSettings() {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const { user, deleteAccount, logout } = useAuth();
 
   const handleSubmitPasswordChange = (e) => {
     e.preventDefault();
@@ -28,56 +30,82 @@ function FormSettings() {
     setConfirmNewPassword("");
   };
 
-  const handleDeleteAccount = () => {
-    // Aquí puedes agregar la lógica para eliminar la cuenta
+  const handleDeleteAccount = async () => {
+    try {
+      await deleteAccount();
+      logout;
+      Swal.fire({
+        title:
+          '<strong style="color: white;">¡Cuenta eliminada con éxito!</strong>',
+        html: '<i style="color: white;">Tu cuenta ha sido eliminada.</i>',
+        icon: "success",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 3000,
+      });
+    } catch (error) {
+      console.error(error.message);
+      Swal.fire({
+        title: '<strong style="color: white;">¡ERROR!</strong>',
+        html: '<i style="color: white;">Ha ocurrido un error al intentar eliminar la cuenta</i>',
+        icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 3000,
+        footer: `<p style="color: white;">${error.message}</p>`,
+      });
+    }
   };
 
   return (
-    <div className="contact" id="contact">
-      <div className="rightSide">
-        <h1 className="h1-contact"> Configuración de la cuenta</h1>
-        <form className="contact-form" onSubmit={handleSubmitPasswordChange}>
-          <label className="label-contact" htmlFor="password">
+    <div className="contact-s" id="contact">
+      <div className="rightSide-s">
+        <h1 className="h1-contact-s"> Configuración de la cuenta</h1>
+        <form className="contact-form-s" onSubmit={handleSubmitPasswordChange}>
+          <label className="label-contact-s" htmlFor="password">
             Contraseña actual
           </label>
           <input
-            className="input-contact"
+            className="input-contact-s"
             name="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="..."
             required
           />
-          <label className="label-contact" htmlFor="newPassword">
+          <label className="label-contact-s" htmlFor="newPassword">
             Nueva contraseña
           </label>
           <input
-            className="input-contact"
+            className="input-contact-s"
             name="newPassword"
             type="password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="..."
             required
           />
-          <label className="label-contact" htmlFor="confirmNewPassword">
+          <label className="label-contact-s" htmlFor="confirmNewPassword">
             Confirmar nueva contraseña
           </label>
           <input
-            className="input-contact"
+            className="input-contact-s"
             name="confirmNewPassword"
             type="password"
+            placeholder="..."
             value={confirmNewPassword}
             onChange={(e) => setConfirmNewPassword(e.target.value)}
             required
           />
-          <button className="buton-form" type="submit">
+          <button className="buton-form-s" type="submit">
             Cambiar contraseña
           </button>
         </form>
         <button
-          className="buton-form"
-          onClick={handleDeleteAccount}
-          style={{ marginTop: "20px" }}
+          className="buton-form-s-delete"
+          onChange={handleDeleteAccount}
+          style={{ marginTop: "20px", backgroundColor: "#f44336" }}
         >
           Eliminar cuenta
         </button>

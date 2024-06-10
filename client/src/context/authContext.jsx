@@ -1,4 +1,9 @@
-import { registerRequest, loginRequest, verityTokenRequest } from "../api/auth";
+import {
+  registerRequest,
+  loginRequest,
+  verityTokenRequest,
+  deleteAccountRequest,
+} from "../api/auth";
 import { createContext, useState, useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 
@@ -41,6 +46,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteAccount = async (user) => {
+    try {
+      const response = await deleteAccountRequest(user);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+      throw new Error(
+        error.response.data.message || "Error al eliminar la cuenta"
+      );
+    }
+  };
   const logout = () => {
     Cookies.remove("token");
     setIsAuthenticated(false);
@@ -90,6 +107,7 @@ export const AuthProvider = ({ children }) => {
         signin,
         logout,
         loading,
+        deleteAccount,
         user,
         isAuthenticated,
         errors,
