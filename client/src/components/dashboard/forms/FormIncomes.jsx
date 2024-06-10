@@ -149,27 +149,120 @@ function FormIncomes() {
       }
     });
   };
+  const setIncome = (val) => {
+    setEditar(true);
+    setFormData({
+      title: val.title,
+      description: val.description,
+      amount: val.amount,
+      category_id: val.category_id,
+    });
+    setId(val.id);
+  };
+  //
+  const handleEditClick = (income) => {
+    Swal.fire({
+      title: "Actualizar Ingreso",
+      html: `
+      <div className="form-comp" style="background-color: #000" >
+        <form id="updateForm">
+          <div className="grid-container">
+            <div className="grid-item">
+              <label htmlFor="title">Titulo</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="..."
+                value="${formData.title}"
+              />
+            </div>
+            <div className="grid-item">
+              <label htmlFor="description">Descripción</label>
+              <input
+                type="text"
+                id="description"
+                name="description"
+                placeholder="..."
+                value="${formData.description}"
+              />
+            </div>
+            <div className="grid-item">
+              <label htmlFor="amount">Monto</label>
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                placeholder="..."
+                value="${formData.amount}"
+              />
+            </div>
+            <div className="grid-item">
+              <label htmlFor="category_id">Categoría</label>
+              <select id="category_id" name="category_id" value="${
+                formData.category_id
+              }">
+                <option value="">...</option>
+                ${categories
+                  .map(
+                    (categoria) => `
+                  <option key="${categoria.id}" value="${categoria.id}">
+                    ${categoria.name_category}
+                  </option>
+                `
+                  )
+                  .join("")}
+              </select>
+            </div>
+          </div>
+        </form>
+        </div>
+      `,
+      showCancelButton: true,
+      preConfirm: () => {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const amount = document.getElementById("amount").value;
+        const category_id = document.getElementById("category_id").value;
+
+        if (!title || !description || !amount || !category_id) {
+          Swal.showValidationMessage("Por favor, rellena todos los campos");
+        } else {
+          return { title, description, amount, category_id };
+        }
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Aquí puedes manejar los valores de entrada
+        console.log(result.value);
+      }
+    });
+  };
   const handleUpdateIncome = async (e) => {
     e.preventDefault();
     try {
       await updateIncome(id, formData);
       clean();
       Swal.fire({
-        title: "<strong>Actualización exitosa!</strong>",
+        title: '<strong style="color: white;">Actualización exitosa!</strong>',
         html:
-          "<i>El Ingreso <strong>" +
+          '<i style="color: white;">El Ingreso <strong>' +
           formData.title +
-          "</strong> fue actualizado con éxito! </i>",
+          '</strong style="color: white;"> fue actualizado con éxito! </i>',
         icon: "success",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
       });
       await getIncome();
     } catch (error) {
-      setError(error.response.data.message);
       Swal.fire({
-        icon: "error",
-        title: "ERROR",
-        text: "Parece que hubo un error al actualizar el ingreso!",
-        footer: '<a href="#">Intente más tarde</a>',
+        title: '<strong style="color: white;">¡ERROR!</strong>',
+        html: '<i style="color: white;">Parece que hubo un error al actualizar el ingreso</i>',
+        icon: "warning",
+        background: "#12151E",
+        confirmButtonColor: "#1DB13E",
+        timer: 3000,
+        footer: `<p style="color: white;">${error.response.data.message}</p>`,
       });
     }
   };
@@ -378,7 +471,10 @@ function FormIncomes() {
                       <td>{val.amount}</td>
                       <td>{getCategoryName(val.category_id)}</td>
                       <td>
-                        <button className="edit-button">
+                        <button
+                          className="edit-button"
+                          onClick={handleEditClick}
+                        >
                           <FaEdit />
                         </button>
                         <button
