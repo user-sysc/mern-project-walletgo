@@ -1,3 +1,5 @@
+import IncomeExpenseBarChart from "../charts/IncomeExpenseBarChart";
+import IncomeExpensePieChart from "../charts/tortaPieChart";
 import { useCategory } from "../../../context/categoryContext";
 import { useExpense } from "../../../context/expenseContext";
 import { useAuth } from "../../../context/authContext";
@@ -363,7 +365,7 @@ function FormExpenses() {
             <Example />
           </div>
           <div className="form-graph">
-            <Example />
+            <IncomeExpenseBarChart />
           </div>
 
           <div className="table-card">

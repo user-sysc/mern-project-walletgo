@@ -2,21 +2,11 @@ import { useCategory } from "../../../context/categoryContext";
 import { useExpense } from "../../../context/expenseContext";
 import { useAuth } from "../../../context/authContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import ExpensePieChart from "../../dashboard/charts/ExpensePieChart";
 import { useState, useEffect } from "react";
 import "../../../styles/form.css";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
-
-import { PureComponent } from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  Legend,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-} from "recharts";
 
 function FormExpenses() {
   const [id, setId] = useState("");
@@ -292,72 +282,6 @@ function FormExpenses() {
   const formatFecha = (fecha) => {
     return format(new Date(fecha), "dd/MM/yyyy");
   };
-  const data = [
-    {
-      subject: "Math",
-      A: 120,
-      B: 110,
-      fullMark: 150,
-    },
-    {
-      subject: "Chinese",
-      A: 98,
-      B: 130,
-      fullMark: 150,
-    },
-    {
-      subject: "English",
-      A: 86,
-      B: 130,
-      fullMark: 150,
-    },
-    {
-      subject: "Geography",
-      A: 99,
-      B: 100,
-      fullMark: 150,
-    },
-    {
-      subject: "Physics",
-      A: 85,
-      B: 90,
-      fullMark: 150,
-    },
-    {
-      subject: "History",
-      A: 65,
-      B: 85,
-      fullMark: 150,
-    },
-  ];
-  class Example extends PureComponent {
-    render() {
-      return (
-        <ResponsiveContainer width="100%" height="100%">
-          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
-            <PolarGrid />
-            <PolarAngleAxis dataKey="subject" />
-            <PolarRadiusAxis angle={30} domain={[0, 150]} />
-            <Radar
-              name="Expenses"
-              dataKey="A"
-              stroke="#8884d8"
-              fill="#8884d8"
-              fillOpacity={0.6}
-            />
-            <Radar
-              name="Incomes"
-              dataKey="B"
-              stroke="#82ca9d"
-              fill="#82ca9d"
-              fillOpacity={0.6}
-            />
-            <Legend />
-          </RadarChart>
-        </ResponsiveContainer>
-      );
-    }
-  }
 
   return (
     <div className="w-full h-full">
@@ -435,7 +359,8 @@ function FormExpenses() {
               </div>
             </div>
             <div className="form-graph">
-              <Example />
+              <ExpensePieChart />
+              {/* <Example /> */}
             </div>
           </div>
 
@@ -445,7 +370,7 @@ function FormExpenses() {
                 type="text"
                 id="producto-filter"
                 name="producto-filter"
-                placeholder="Filtrar Ingresos"
+                placeholder="Filtrar Egresos"
                 autoComplete="off"
                 value={filterValue}
                 onChange={handleFilterChangeExpense}
