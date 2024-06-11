@@ -23,9 +23,9 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **Sequelize**: ORM para Node.js con soporte para varios dialectos de bases de datos.
 - **Cors**: Middleware para permitir solicitudes de origen cruzado (CORS).
 - **Morgan**: Middleware para el registro de solicitudes HTTP.
-- **bcryptjs**: Herramienta para cifrar contraseñas en formato hash
-- **jsonwebtoken**: Herramienta para la creación de tokes relacionadas con la autenticación.
-- **cookie-parser**: Herramienta para .
+- **bcryptjs**: Biblioteca de JavaScript para cifrar y comparar contraseñas de manera segura.
+- **jsonwebtoken**: Biblioteca de JavaScript que implementa el estándar JSON Web Tokens (JWT) para la transmisión segura de información.
+- **cookie-parser**: Middleware de Node.js para analizar las cookies del cliente.
 
 ### Dependencias de Desarrollo
 
