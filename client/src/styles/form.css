@@ -10,6 +10,17 @@
   --placeholder: #ebeef188;
 }
 
+.cardg {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 100%; /* Increase this to increase width */
+  padding: 20px;
+  height: 470px; /* Increase this to increase height */
+  margin-top: 20px;
+  border-radius: 9px;
+  background-color: #12161C;
+}
+
 .card-container {
   display: flex;
   margin-top: 20px;
@@ -104,6 +115,13 @@
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 1rem;
+}
+.header-comp-e {
+  background-color: #12161c;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 5px;
 }
 
 .form-comp {

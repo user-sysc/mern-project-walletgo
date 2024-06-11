@@ -1,6 +1,5 @@
-import IncomeExpenseBarChart from "../charts/IncomeExpenseBarChart";
-import IncomeExpensePieChart from "../charts/tortaPieChart";
 import { useAuth } from "../../../context/authContext";
+import Example from "../charts/Example";
 import "../../../styles/form.css";
 
 function FormExpenses() {
@@ -10,17 +9,12 @@ function FormExpenses() {
     <div className="w-full h-full-g">
       {user && (
         <>
-          <div className="form-grafica-one">
-            <div>
-              <IncomeExpenseBarChart />
+          <div className="w-full h-full">
+            <div className="header-comp-e">
+              <h1 className="title-comp-e">Estadísticas</h1>
             </div>
-          </div>
-          <div className="form-grafica-two">
-            <div>
-              <IncomeExpensePieChart />
-            </div>
-            <div>
-              <IncomeExpensePieChart />
+            <div className="cardg">
+              <Example />
             </div>
           </div>
         </>

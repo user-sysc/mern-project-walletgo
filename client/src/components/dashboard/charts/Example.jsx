@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Radar,
   RadarChart,
@@ -7,47 +8,20 @@ import {
   PolarRadiusAxis,
   ResponsiveContainer,
 } from "recharts";
-
-const data = [
-  {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+import { useIncome } from "../../../context/incomeContext";
+import { useExpense } from "../../../context/expenseContext";
 
 const Example = () => {
+  const { incomes } = useIncome();
+  const { expenses } = useExpense();
+
+  // Transforma los datos
+  const data = incomes.map((income, index) => ({
+    subject: income.month, // Asume que cada objeto de ingresos tiene una propiedad 'month'
+    A: income.amount, // Asume que cada objeto de ingresos tiene una propiedad 'amount'
+    B: expenses[index].amount, // Asume que cada objeto de gastos tiene una propiedad 'amount'
+  }));
+
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
@@ -55,14 +29,14 @@ const Example = () => {
         <PolarAngleAxis dataKey="subject" />
         <PolarRadiusAxis angle={30} domain={[0, 150]} />
         <Radar
-          name="Mike"
+          name="Incomes"
           dataKey="A"
           stroke="#8884d8"
           fill="#8884d8"
           fillOpacity={0.6}
         />
         <Radar
-          name="Lily"
+          name="Expenses"
           dataKey="B"
           stroke="#82ca9d"
           fill="#82ca9d"

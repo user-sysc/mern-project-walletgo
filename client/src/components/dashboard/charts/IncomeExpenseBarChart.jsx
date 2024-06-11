@@ -1,8 +1,8 @@
-import React from "react";
+import { useIncome } from "../../../context/incomeContext";
+import { useExpense } from "../../../context/expenseContext";
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -11,8 +11,6 @@ import {
   ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
-import { useIncome } from "../../../context/incomeContext";
-import { useExpense } from "../../../context/expenseContext";
 
 function IncomeExpenseBarChart() {
   const { incomes } = useIncome();
@@ -21,12 +19,12 @@ function IncomeExpenseBarChart() {
   // Mapear los ingresos y gastos a la estructura de datos requerida por la gráfica
   const data = incomes.map((income, index) => ({
     name: income.title,
-    Income: income.amount,
-    Expense: expenses[index] ? -expenses[index].amount : 0, // Los gastos se representan como valores negativos
+    uv: income.amount,
+    pv: expenses[index] ? -expenses[index].amount : 0, // Los gastos se representan como valores negativos
   }));
 
   return (
-    <ResponsiveContainer width="100%" height="400px">
+    <ResponsiveContainer width="200%" height="400px">
       <BarChart
         width={500}
         height={300}
@@ -44,8 +42,8 @@ function IncomeExpenseBarChart() {
         <Tooltip />
         <Legend />
         <ReferenceLine y={0} stroke="#000" />
-        <Bar dataKey="Income" fill="#8884d8" />
-        <Bar dataKey="Expense" fill="#82ca9d" />
+        <Bar dataKey="pv" fill="#8884d8" />
+        <Bar dataKey="uv" fill="#82ca9d" />
       </BarChart>
     </ResponsiveContainer>
   );
