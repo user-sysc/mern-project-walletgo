@@ -169,12 +169,6 @@ function FormCategories() {
       showCancelButton: true,
       preConfirm: () => {
         const name_category = document.getElementById("name_category").value;
-
-        if (!name_category) {
-          Swal.showValidationMessage("Por favor, el campo es obligatorio");
-        } else {
-          return { name_category };
-        }
       },
     }).then((result) => {
       if (result.isConfirmed) {
@@ -294,7 +288,9 @@ function FormCategories() {
           <div className="form-comp-c">
             <div className="card-c">
               <h1 className="sub-titles-copm">Nueva Categoria</h1>
-              <form onSubmit={handleCreateCategory}>
+              <form
+                onSubmit={editar ? handleUpdateCategory : handleCreateCategory}
+              >
                 <div className="grid-container">
                   <div className="grid-item">
                     <label htmlFor="name_category">Nombre Categoria</label>
@@ -311,7 +307,14 @@ function FormCategories() {
                   </div>
                 </div>
                 <div>
-                  <button type="submit">Agregar Categoria</button>
+                  <button type={editar ? "submit_2" : "submit"}>
+                    {editar ? "Actualizar" : "Registrar"}
+                  </button>
+                  {editar && (
+                    <button type="button" onClick={clean}>
+                      Cancelar
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
@@ -347,7 +350,7 @@ function FormCategories() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={() => handleEditClick(val)}
+                          onClick={() => setCategory(val)}
                         >
                           <FaEdit />
                         </button>

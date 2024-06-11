@@ -159,7 +159,6 @@ function FormExpenses() {
     });
     setId(val.id);
   };
-  //
   const handleEditClick = (expense) => {
     Swal.fire({
       title: '<strong style="color: white;">Actualizar Egreso</strong>',
@@ -182,6 +181,7 @@ function FormExpenses() {
               name="title"
               placeholder="..."
               value="${expense.title}"
+              onChange="${handleChange}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="description" style="margin-bottom: 5px">Descripción</label>
@@ -190,6 +190,7 @@ function FormExpenses() {
               id="description"
               name="description"
               placeholder="..."
+              onChange="${handleChange}"
               value="${expense.description}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
@@ -199,21 +200,24 @@ function FormExpenses() {
               id="amount"
               name="amount"
               placeholder="..."
+              onChange="${handleChange}"
               value="${expense.amount}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="category_id" style="margin-bottom: 5px">Categoría</label>
-            <select id="category_id" name="category_id" value="${
-              expense.category_id
-            }" style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;">
+            <select id="category_id" name="category_id" onChange="${handleChange}" value="${
+        expense.category_id
+      }" style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;">
               <option value="">...</option>
               ${categories
                 .map(
                   (categoria) => `
-                <option key="${categoria.id}" value="${categoria.id}">
+                <option key="${categoria.id}" value="${categoria.id}" ${
+                    categoria.id === expense.category_id ? "selected" : ""
+                  }>
                   ${categoria.name_category}
-                </option>
-              `
+                  </option>
+                  `
                 )
                 .join("")}
             </select>
@@ -227,17 +231,12 @@ function FormExpenses() {
         const amount = document.getElementById("amount").value;
         const category_id = document.getElementById("category_id").value;
 
-        if (!title || !description || !amount) {
-          Swal.showValidationMessage(
-            "Por favor, todos los campos son obligatorios"
-          );
-        } else {
-          return { title, description, amount, category_id };
-        }
+        // return { title, description, amount, category_id };
+        console.log({ title, description, amount, category_id });
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        // Aquí puedes manejar los valores de entrada
+        handleUpdateExpense(result.value);
         console.log(result.value);
       }
     });
@@ -368,7 +367,9 @@ function FormExpenses() {
             <div className="form-comp">
               <div className="card">
                 <h1 className="sub-titles-copm">Nuevo Egreso</h1>
-                <form onSubmit={handleCreateExpense}>
+                <form
+                  onSubmit={editar ? handleUpdateExpense : handleCreateExpense}
+                >
                   <div className="grid-container">
                     <div className="grid-item">
                       <label htmlFor="title">Titulo</label>
@@ -421,7 +422,14 @@ function FormExpenses() {
                     </div>
                   </div>
                   <div>
-                    <button type="submit">Agregar Egreso</button>
+                    <button type={editar ? "submit_2" : "submit"}>
+                      {editar ? "Actualizar" : "Agregar Egreso"}
+                    </button>
+                    {editar && (
+                      <button type="button" onClick={clean}>
+                        Cancelar
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>
@@ -477,7 +485,7 @@ function FormExpenses() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={() => handleEditClick(val)}
+                          onClick={() => setExpense(val)}
                         >
                           <FaEdit />
                         </button>

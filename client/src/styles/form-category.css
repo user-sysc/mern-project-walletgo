@@ -127,7 +127,7 @@
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: var(--azul1);
+  background-color: 25B244;
   color: white;
   font-size: 0.9rem;
   cursor: pointer;
@@ -140,7 +140,7 @@
 }
 
 .card-c button[type="submit_2"]:hover {
-  background-color: var(--azul2);
+  background-color: 25B244;
 }
 
 .card-c button[type="button"] {
@@ -148,7 +148,7 @@
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 1rem;
-  background-color: var(--rojo1);
+  background-color: #f44336;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 0.9rem;
@@ -160,7 +160,7 @@
 }
 
 .card-c button[type="button"]:hover {
-  background-color: var(--rojo2);
+  background-color: #f44336;
 }
 
 /*CSS TABLAS*/

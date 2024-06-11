@@ -210,9 +210,11 @@ function FormIncomes() {
               ${categories
                 .map(
                   (categoria) => `
-                <option key="${categoria.id}" value="${categoria.id}">
+                <option key="${categoria.id}" value="${categoria.id}" ${
+                    categoria.id === income.category_id ? "selected" : ""
+                  }>
                   ${categoria.name_category}
-                </option>
+                  </option>
               `
                 )
                 .join("")}
@@ -368,7 +370,9 @@ function FormIncomes() {
             <div className="form-comp">
               <div className="card">
                 <h1 className="sub-titles-copm">Nuevo Ingreso</h1>
-                <form onSubmit={handleCreateIncome}>
+                <form
+                  onSubmit={editar ? handleUpdateIncome : handleCreateIncome}
+                >
                   <div className="grid-container">
                     <div className="grid-item">
                       <label htmlFor="title">Titulo</label>
@@ -421,7 +425,14 @@ function FormIncomes() {
                     </div>
                   </div>
                   <div>
-                    <button type="submit">Agregar Ingreso</button>
+                    <button type={editar ? "submit_2" : "submit"}>
+                      {editar ? "Actualizar" : "Agregar Ingreso"}
+                    </button>
+                    {editar && (
+                      <button type="button" onClick={clean}>
+                        Cancelar
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>
@@ -477,7 +488,7 @@ function FormIncomes() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={() => handleEditClick(val)}
+                          onClick={() => setIncome(val)}
                         >
                           <FaEdit />
                         </button>
