@@ -1,5 +1,5 @@
 import { useCategory } from "../../../context/categoryContext";
-import { useIncome } from "../../../context/expenseContext";
+import { useExpense } from "../../../context/expenseContext";
 import { useAuth } from "../../../context/authContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState, useEffect } from "react";
@@ -27,7 +27,7 @@ function FormExpenses() {
   const [filterValueCategory, setFilterValueCategory] = useState("");
 
   const { createExpense, getExpense, expenses, deleteExpense, updateExpense } =
-    useIncome();
+    useExpense();
   const { getCategory, categories } = useCategory();
   const { user } = useAuth();
 
