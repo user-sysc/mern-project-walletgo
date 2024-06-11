@@ -11,8 +11,8 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 - **React Icons**: Iconos para la interfaz de usuario.
 - **React Router DOM**: Enrutamiento para la aplicación de una sola página (SPA).
 - **SweetAlert2**: Biblioteca para crear alerts y diálogos personalizados.
-- **js-cookie**:
-- **prop-types**:
+- **js-cookie**: Biblioteca de JavaScript para manejar cookies en el lado del cliente.
+- **prop-types**: Biblioteca de React para la comprobación de tipos en tiempo de ejecución.
 
 ## Server
 
