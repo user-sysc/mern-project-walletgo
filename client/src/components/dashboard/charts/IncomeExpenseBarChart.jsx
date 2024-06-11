@@ -26,7 +26,7 @@ function IncomeExpenseBarChart() {
   }));
 
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width="100%" height="400px">
       <BarChart
         width={500}
         height={300}
