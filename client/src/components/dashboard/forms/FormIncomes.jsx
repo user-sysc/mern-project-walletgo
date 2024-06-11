@@ -162,60 +162,62 @@ function FormIncomes() {
   //
   const handleEditClick = (income) => {
     Swal.fire({
-      title: "Actualizar Ingreso",
+      title: '<strong style="color: white;">Actualizar Ingreso</strong>',
+      background: "#12161C",
+      confirmButtonColor: "#1DB13E",
+      customClass: {
+        popup: "custom-swal",
+        cancelButton: "cancel-button-class",
+      },
+      confirmButton: "#1db13e",
+      confirmButtonText: "Actualizar",
+      cancelButtonColor: "#d32f2f",
       html: `
-      <div className="form-comp" style="background-color: #000" >
-        <form id="updateForm">
-          <div className="grid-container">
-            <div className="grid-item">
-              <label htmlFor="title">Titulo</label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                placeholder="..."
-                value="${formData.title}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="description">Descripción</label>
-              <input
-                type="text"
-                id="description"
-                name="description"
-                placeholder="..."
-                value="${formData.description}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="amount">Monto</label>
-              <input
-                type="number"
-                id="amount"
-                name="amount"
-                placeholder="..."
-                value="${formData.amount}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="category_id">Categoría</label>
-              <select id="category_id" name="category_id" value="${
-                formData.category_id
-              }">
-                <option value="">...</option>
-                ${categories
-                  .map(
-                    (categoria) => `
-                  <option key="${categoria.id}" value="${categoria.id}">
-                    ${categoria.name_category}
-                  </option>
-                `
-                  )
-                  .join("")}
-              </select>
-            </div>
-          </div>
-        </form>
+        <div>
+          <form id="updateForm" style="display: flex; flex-direction: column; color: white";>
+            <label for="title" style="margin-bottom: 5px">Titulo</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="..."
+              value="${formData.title}"
+              style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
+            />
+            <label for="description" style="margin-bottom: 5px">Descripción</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="..."
+              value="${formData.description}"
+              style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
+            />
+            <label for="amount" style="margin-bottom: 5px">Monto</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="..."
+              value="${formData.amount}"
+              style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
+            />
+            <label for="category_id" style="margin-bottom: 5px">Categoría</label>
+            <select id="category_id" name="category_id" value="${
+              formData.category_id
+            }" style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;">
+              <option value="">...</option>
+              ${categories
+                .map(
+                  (categoria) => `
+                <option key="${categoria.id}" value="${categoria.id}">
+                  ${categoria.name_category}
+                </option>
+              `
+                )
+                .join("")}
+            </select>
+          </form>
         </div>
       `,
       showCancelButton: true,
@@ -226,7 +228,9 @@ function FormIncomes() {
         const category_id = document.getElementById("category_id").value;
 
         if (!title || !description || !amount || !category_id) {
-          Swal.showValidationMessage("Por favor, rellena todos los campos");
+          Swal.showValidationMessage(
+            "Por favor, todos los campos son obligatorios"
+          );
         } else {
           return { title, description, amount, category_id };
         }

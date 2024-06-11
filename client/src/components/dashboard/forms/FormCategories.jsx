@@ -140,75 +140,41 @@ function FormCategories() {
     setId(val.id);
   };
   //
-  const handleEditClick = (expense) => {
+  const handleEditClick = (category) => {
     Swal.fire({
-      title: "Actualizar Egreso",
+      title: '<strong style="color: white;">Actualizar Categoria</strong>',
+      background: "#12161C",
+      confirmButtonColor: "#1DB13E",
+      customClass: {
+        popup: "custom-swal",
+        cancelButton: "cancel-button-class",
+      },
+      confirmButton: "#1db13e",
+      confirmButtonText: "Actualizar",
+      cancelButtonColor: "#d32f2f",
       html: `
-      <div className="form-comp" style="background-color: #000" >
-        <form id="updateForm">
-          <div className="grid-container">
-            <div className="grid-item">
-              <label htmlFor="title">Titulo</label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                placeholder="..."
-                value="${formData.title}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="description">Descripción</label>
-              <input
-                type="text"
-                id="description"
-                name="description"
-                placeholder="..."
-                value="${formData.description}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="amount">Monto</label>
-              <input
-                type="number"
-                id="amount"
-                name="amount"
-                placeholder="..."
-                value="${formData.amount}"
-              />
-            </div>
-            <div className="grid-item">
-              <label htmlFor="category_id">Categoría</label>
-              <select id="category_id" name="category_id" value="${
-                formData.category_id
-              }">
-                <option value="">...</option>
-                ${categories
-                  .map(
-                    (categoria) => `
-                  <option key="${categoria.id}" value="${categoria.id}">
-                    ${categoria.name_category}
-                  </option>
-                `
-                  )
-                  .join("")}
-              </select>
-            </div>
-          </div>
-        </form>
+        <div>
+          <form id="updateForm" style="display: flex; flex-direction: column; color: white";>
+            <label for="title" style="margin-bottom: 10px; margin-right: 10px;">Nombre Categoria</label>
+            <input
+              type="text"
+              id="name_category"
+              name="name_category"
+              placeholder="..."
+              value="${formData.name_category}"
+              style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
+            />
+          </form>
         </div>
       `,
       showCancelButton: true,
       preConfirm: () => {
-        const title = document.getElementById("title").value;
-        const description = document.getElementById("description").value;
-        const amount = document.getElementById("amount").value;
-        const category_id = document.getElementById("category_id").value;
+        const name_category = document.getElementById("name_category").value;
 
-        if (!title || !description || !amount || !category_id) {
-          Swal.showValidationMessage("Por favor, rellena todos los campos");
+        if (!name_category) {
+          Swal.showValidationMessage("Por favor, el campo es obligatorio");
         } else {
-          return { title, description, amount, category_id };
+          return { name_category };
         }
       },
     }).then((result) => {

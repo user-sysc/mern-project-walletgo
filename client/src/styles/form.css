@@ -10,6 +10,13 @@
   --placeholder: #ebeef188;
 }
 
+.custom-swal {
+  border-radius: 15px; /* Cambia esto a tu radio de borde preferido */
+}
+.cancel-button-class {
+  background-color: #ff0000;
+  color: white;
+}
 * {
   margin: 0;
   padding: 0;
