@@ -63,7 +63,6 @@ function FormCategories() {
   };
   const handleCreateCategory = async (e) => {
     e.preventDefault();
-
     try {
       console.log(formData);
       await createCategory(formData);
@@ -95,7 +94,7 @@ function FormCategories() {
       title: '<strong style="color: white;">Confirmar eliminación</>',
       html:
         '<i style="color: white;">¿Realmente desea eliminar a <strong>' +
-        val.title +
+        val.name_category +
         "</strong>?</i>",
       icon: "warning",
       background: "#12151E",
@@ -111,7 +110,7 @@ function FormCategories() {
               title: '<strong style="color: white;">Registro eliminado!</>',
               html:
                 '<i style="color: white;">La categoria <strong>' +
-                val.title +
+                val.name_category +
                 '</strong style="color: white;"> fue eliminado exitosamente!</i>',
               icon: "success",
               background: "#12151E",
@@ -139,7 +138,6 @@ function FormCategories() {
     });
     setId(val.id);
   };
-  //
   const handleEditClick = (category) => {
     Swal.fire({
       title: '<strong style="color: white;">Actualizar Categoria</strong>',
@@ -161,7 +159,8 @@ function FormCategories() {
               id="name_category"
               name="name_category"
               placeholder="..."
-              value="${formData.name_category}"
+              autoComplete="off"
+              value="${category.name_category}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
           </form>
@@ -193,7 +192,7 @@ function FormCategories() {
         title: '<strong style="color: white;">Actualización exitosa!</strong>',
         html:
           '<i style="color: white;">La categoria <strong>' +
-          formData.title +
+          formData.name_category +
           '</strong style="color: white;"> fue actualizado con éxito! </i>',
         icon: "success",
         background: "#12151E",
@@ -304,6 +303,7 @@ function FormCategories() {
                       id="name_category"
                       name="name_category"
                       placeholder="..."
+                      autoComplete="off"
                       value={formData.name_category}
                       onChange={handleChange}
                       required
@@ -347,7 +347,7 @@ function FormCategories() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={handleEditClick}
+                          onClick={() => handleEditClick(val)}
                         >
                           <FaEdit />
                         </button>

@@ -1,5 +1,5 @@
 import { useCategory } from "../../../context/categoryContext";
-import { useExpense } from "../../../context/expenseContext";
+import { useIncome } from "../../../context/expenseContext";
 import { useAuth } from "../../../context/authContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState, useEffect } from "react";
@@ -27,7 +27,7 @@ function FormExpenses() {
   const [filterValueCategory, setFilterValueCategory] = useState("");
 
   const { createExpense, getExpense, expenses, deleteExpense, updateExpense } =
-    useExpense();
+    useIncome();
   const { getCategory, categories } = useCategory();
   const { user } = useAuth();
 
@@ -86,7 +86,7 @@ function FormExpenses() {
       await createExpense(formData);
       Swal.fire({
         title: '<strong style="color: white;">¡Registro exitoso!</strong>',
-        html: '<i style="color: white;">El egreso se ha registrado correctamente</i>',
+        html: '<i style="color: white;">El Egreso se ha registrado correctamente</i>',
         icon: "success",
         background: "#12151E",
         confirmButtonColor: "#1DB13E",
@@ -159,6 +159,7 @@ function FormExpenses() {
     });
     setId(val.id);
   };
+  //
   const handleEditClick = (expense) => {
     Swal.fire({
       title: '<strong style="color: white;">Actualizar Egreso</strong>',
@@ -166,7 +167,9 @@ function FormExpenses() {
       confirmButtonColor: "#1DB13E",
       customClass: {
         popup: "custom-swal",
+        cancelButton: "cancel-button-class",
       },
+      confirmButton: "#1db13e",
       confirmButtonText: "Actualizar",
       cancelButtonColor: "#d32f2f",
       html: `
@@ -178,7 +181,7 @@ function FormExpenses() {
               id="title"
               name="title"
               placeholder="..."
-              value="${formData.title}"
+              value="${expense.title}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="description" style="margin-bottom: 5px">Descripción</label>
@@ -187,7 +190,7 @@ function FormExpenses() {
               id="description"
               name="description"
               placeholder="..."
-              value="${formData.description}"
+              value="${expense.description}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="amount" style="margin-bottom: 5px">Monto</label>
@@ -196,12 +199,12 @@ function FormExpenses() {
               id="amount"
               name="amount"
               placeholder="..."
-              value="${formData.amount}"
+              value="${expense.amount}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="category_id" style="margin-bottom: 5px">Categoría</label>
             <select id="category_id" name="category_id" value="${
-              formData.category_id
+              expense.category_id
             }" style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;">
               <option value="">...</option>
               ${categories
@@ -224,7 +227,7 @@ function FormExpenses() {
         const amount = document.getElementById("amount").value;
         const category_id = document.getElementById("category_id").value;
 
-        if (!title || !description || !amount || !category_id) {
+        if (!title || !description || !amount) {
           Swal.showValidationMessage(
             "Por favor, todos los campos son obligatorios"
           );
@@ -434,7 +437,7 @@ function FormExpenses() {
                 type="text"
                 id="producto-filter"
                 name="producto-filter"
-                placeholder="Filtrar Egresos"
+                placeholder="Filtrar Ingresos"
                 autoComplete="off"
                 value={filterValue}
                 onChange={handleFilterChangeExpense}
@@ -474,7 +477,7 @@ function FormExpenses() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={handleEditClick}
+                          onClick={() => handleEditClick(val)}
                         >
                           <FaEdit />
                         </button>

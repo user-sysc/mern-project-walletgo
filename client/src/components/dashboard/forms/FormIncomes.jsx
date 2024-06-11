@@ -181,7 +181,7 @@ function FormIncomes() {
               id="title"
               name="title"
               placeholder="..."
-              value="${formData.title}"
+              value="${income.title}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="description" style="margin-bottom: 5px">Descripción</label>
@@ -190,7 +190,7 @@ function FormIncomes() {
               id="description"
               name="description"
               placeholder="..."
-              value="${formData.description}"
+              value="${income.description}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="amount" style="margin-bottom: 5px">Monto</label>
@@ -199,12 +199,12 @@ function FormIncomes() {
               id="amount"
               name="amount"
               placeholder="..."
-              value="${formData.amount}"
+              value="${income.amount}"
               style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;"
             />
             <label for="category_id" style="margin-bottom: 5px">Categoría</label>
             <select id="category_id" name="category_id" value="${
-              formData.category_id
+              income.category_id
             }" style="background-color: #212f3c; color: white; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: none; outline-color: #1db13e;">
               <option value="">...</option>
               ${categories
@@ -477,7 +477,7 @@ function FormIncomes() {
                       <td>
                         <button
                           className="edit-button"
-                          onClick={handleEditClick}
+                          onClick={() => handleEditClick(val)}
                         >
                           <FaEdit />
                         </button>

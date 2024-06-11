@@ -360,70 +360,10 @@ function FormExpenses() {
       {user && (
         <>
           <div className="w-full h-full-2">
-            <div className="form-comp">
-              <div className="card">
-                <h1 className="sub-titles-copm">Nuevo Egreso</h1>
-                <form onSubmit={handleCreateExpense}>
-                  <div className="grid-container">
-                    <div className="grid-item">
-                      <label htmlFor="title">Titulo</label>
-                      <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="..."
-                        value={formData.title}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="grid-item">
-                      <label htmlFor="description">Descripción</label>
-                      <input
-                        type="text"
-                        id="description"
-                        name="description"
-                        placeholder="..."
-                        value={formData.description}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="grid-item">
-                      <label htmlFor="amount">Monto</label>
-                      <input
-                        type="number"
-                        id="amount"
-                        name="amount"
-                        placeholder="..."
-                        value={formData.amount}
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="grid-item">
-                      <label htmlFor="category_id">Categoría</label>
-                      <select
-                        id="category_id"
-                        name="category_id"
-                        value={formData.category_id}
-                        onChange={handleChange}
-                      >
-                        <option value="">...</option>
-                        {categories.map((categoria) => (
-                          <option key={categoria.id} value={categoria.id}>
-                            {categoria.name_category}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <button type="submit">Agregar Egreso</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div className="form-graph">
-              <Example />
-            </div>
+            <Example />
+          </div>
+          <div className="form-graph">
+            <Example />
           </div>
 
           <div className="table-card">
