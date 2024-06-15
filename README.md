@@ -50,12 +50,6 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
    pnpm --version
    ```
 
-   2.3 Seguido de esto actualizar pnpm a la versión mas reciente para un mejor funcionamiento
-
-   ```bash
-   corepack prepare pnpm@latest --activate
-   ```
-
 ## Usage
 
 1. 📥 Clona el repositorio:
