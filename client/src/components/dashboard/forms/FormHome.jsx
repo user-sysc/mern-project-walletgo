@@ -1,6 +1,7 @@
-import { useAuth } from "../../../context/authContext";
 import { useExpense } from "../../../context/expenseContext";
 import { useIncome } from "../../../context/incomeContext";
+import { useAuth } from "../../../context/authContext";
+import HomeChart from "../charts/HomeChart";
 import "../../../styles/form.css";
 import Card from "./Card";
 
@@ -42,6 +43,11 @@ const FormHome = () => {
           title="Egresos Totales"
           value={`-$${totalExpense}`}
         />
+      </div>
+      <div className="form-graph-container">
+        <div className="graph-padding">
+        <HomeChart/>
+        </div>
       </div>
     </div>
   );

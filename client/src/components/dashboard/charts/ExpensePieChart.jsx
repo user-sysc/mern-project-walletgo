@@ -22,7 +22,7 @@ function ExpensePieChart() {
           dataKey="value"
           cx="50%"
           cy="50%"
-          outerRadius={110}
+          outerRadius={115}
           fill="#8884d8"
         />
         <Pie
@@ -30,7 +30,7 @@ function ExpensePieChart() {
           dataKey="value"
           cx="50%"
           cy="50%"
-          innerRadius={132}
+          innerRadius={130}
           outerRadius={160}
           fill="#3cc75b"
           label
