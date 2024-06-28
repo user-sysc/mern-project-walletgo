@@ -33,10 +33,10 @@ WalletGO es una aplicación de gestión de ingresos y egresos personales. Te ayu
 
 ## Antes de usar, instalar las siguientes herramientas para el correcto uso de la aplicación web
 
-1. Contar con MySQL instalado, ya sea WorkBench MySQL u otro gestor de base de datos, nosotros usamos Laragon.
+1. Contar con MySQL instalado, ya sea [MySql WorkBench](https://www.mysql.com/products/workbench/) u otro gestor de base de datos, nosotros usamos [Laragon](https://laragon.org/).
 2. Yo uso [pnpm](https://pnpm.io/installation) como gestor de dependencias y empaquetador., en caso de no contar con el, ejecutar los siguientes pasos para habilitarlo
 
-   2.1 Ejecutar el siguiente comando en la terminal de windows como administrador le permitira hacer uso de otros gestores de paquetes de Node js, en este caso pnpm que es el que buscamos habilitar.
+   2.1 Ejecutar el siguiente comando en la terminal le permitira hacer uso de otros gestores de paquetes de Nodejs y actualizarlo, en este caso pnpm que es el que buscamos habilitar.
 
    ```bash
    # Activa pnpm en MacOS, WSL & Linux:
