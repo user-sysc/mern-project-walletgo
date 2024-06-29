@@ -122,7 +122,7 @@
 .title-comp {
   font-size: 1.5rem;
   font-weight: bold;
-  
+  user-select: none;
 }
 .header-comp {
   background-color: #12161c;

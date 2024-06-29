@@ -45,14 +45,15 @@ export async function getIncome(req, res) {
 export async function updateIncome(req, res) {
   const user_id = req.usuario.id;
   const { id } = req.params;
-  const { title, description, amount } = req.body;
+  const { title, description, amount,category_id } = req.body;
   try {
     const incomeUpdate = await incomesService.updateIncome(
       id,
       user_id,
       title,
       description,
-      amount
+      amount,
+      category_id
     );
     res.json(incomeUpdate);
   } catch (error) {

@@ -84,7 +84,7 @@ export async function getIncome(id, user_id) {
 }
 
 // Update income
-export async function updateIncome(id, user_id, title, description, amount) {
+export async function updateIncome(id, user_id, title, description, amount, category_id) {
   try {
     const income = await Ingreso.findOne({
       where: {
@@ -95,6 +95,7 @@ export async function updateIncome(id, user_id, title, description, amount) {
     income.title = title;
     income.description = description;
     income.amount = amount;
+    income.category_id = category_id;
     await income.save();
     return new IncomesDTO(
       income.id,

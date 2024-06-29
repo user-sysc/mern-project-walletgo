@@ -302,6 +302,7 @@ function FormExpenses() {
                         id="title"
                         name="title"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.title}
                         onChange={handleChange}
                       />
@@ -313,6 +314,7 @@ function FormExpenses() {
                         id="description"
                         name="description"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.description}
                         onChange={handleChange}
                       />
@@ -324,6 +326,7 @@ function FormExpenses() {
                         id="amount"
                         name="amount"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.amount}
                         onChange={handleChange}
                       />
@@ -333,6 +336,7 @@ function FormExpenses() {
                       <select
                         id="category_id"
                         name="category_id"
+                        autoComplete="off"
                         value={formData.category_id}
                         onChange={handleChange}
                       >

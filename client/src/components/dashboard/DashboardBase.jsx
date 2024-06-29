@@ -24,7 +24,7 @@ import { useAuth } from "../../context/authContext";
 const DashboardBase = () => {
   const [sidebarOpen] = useState(false);
   const { isAuthenticated, logout, user } = useAuth();
-  const [activeContent, setActiveContent] = useState("");
+  const [activeContent, setActiveContent] = useState("home");
 
   return (
     <div className="dashboard">

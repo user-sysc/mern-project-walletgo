@@ -45,14 +45,15 @@ export async function getExpense(req, res) {
 export async function updateExpense(req, res) {
   const user_id = req.usuario.id;
   const {id} = req.params;
-  const { title, description, amount } = req.body;
+  const { title, description, amount,category_id } = req.body;
   try {
     const expenseUpdate = await expensesService.updateExpense(
       id,
       user_id,
       title,
       description,
-      amount
+      amount,
+      category_id
     );
     res.json(expenseUpdate);
   } catch (error) {

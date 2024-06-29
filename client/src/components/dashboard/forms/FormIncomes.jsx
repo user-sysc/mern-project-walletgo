@@ -40,8 +40,8 @@ function FormIncomes() {
   };
 
   useEffect(() => {
-    getCategory();
     getIncome();
+    getCategory();
   }, []);
 
   useEffect(() => {
@@ -148,7 +148,7 @@ function FormIncomes() {
       amount: val.amount,
       category_id: val.category_id,
     });
-    setId(val.id);
+    setId(val.category_id);
   };
   //
   const handleEditClick = (income) => {
@@ -283,9 +283,6 @@ function FormIncomes() {
       )
     );
   };
-  const formatFecha = (fecha) => {
-    return format(new Date(fecha), "dd/MM/yyyy");
-  };
 
   return (
     <div className="w-full h-full">
@@ -306,6 +303,7 @@ function FormIncomes() {
                         id="title"
                         name="title"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.title}
                         onChange={handleChange}
                       />
@@ -317,6 +315,7 @@ function FormIncomes() {
                         id="description"
                         name="description"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.description}
                         onChange={handleChange}
                       />
@@ -328,6 +327,7 @@ function FormIncomes() {
                         id="amount"
                         name="amount"
                         placeholder="..."
+                        autoComplete="off"
                         value={formData.amount}
                         onChange={handleChange}
                       />
@@ -337,6 +337,7 @@ function FormIncomes() {
                       <select
                         id="category_id"
                         name="category_id"
+                        autoComplete="off"
                         value={formData.category_id}
                         onChange={handleChange}
                       >

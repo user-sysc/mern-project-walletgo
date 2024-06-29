@@ -84,7 +84,7 @@ export async function getExpense(id, user_id) {
 }
 
 // Update expense
-export async function updateExpense(id, user_id, title, description, amount) {
+export async function updateExpense(id, user_id, title, description, amount, category_id) {
   try {
     const expense = await Egreso.findOne({
       where: {
@@ -95,6 +95,7 @@ export async function updateExpense(id, user_id, title, description, amount) {
     expense.title = title;
     expense.description = description;
     expense.amount = amount;
+    expense.category_id = category_id;
     await expense.save();
     return new ExpensesDTO(
       expense.id,
