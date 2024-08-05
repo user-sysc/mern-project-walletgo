@@ -46,18 +46,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const deleteAccount = async (user) => {
+  const deleteAccount = async (id) => {
     try {
-      const response = await deleteAccountRequest(user);
+      const response = await deleteAccountRequest(id);
       console.log(response.data);
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
       throw new Error(
         error.response.data.message || "Error al eliminar la cuenta"
-      );
+      ); 
     }
   };
+
   const logout = () => {
     Cookies.remove("token");
     setIsAuthenticated(false);

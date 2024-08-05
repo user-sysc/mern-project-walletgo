@@ -47,7 +47,8 @@ export const validationToken = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
+  // const id = req.usuario.id;
   try {
     await UserService.deleteUser(id);
     res.sendStatus(204);

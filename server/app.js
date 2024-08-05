@@ -7,8 +7,6 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 
-// import * as routes from "./routes/user.routes.js";
-
 const app = express();
 
 // MIDELEWARES
@@ -26,10 +24,5 @@ app.use("/api", userRoutes);
 app.use("/api", categoriesRoutes);
 app.use("/api", incomesRoutes);
 app.use("/api", expensesRoutes);
-
-// app.use("/api", routes.userRoutes);
-// app.use("/api", routes.categoriesRoutes);
-// app.use("/api", routes.incomesRoutes);
-// app.use("/api", routes.expensesRoutes);
 
 export default app;

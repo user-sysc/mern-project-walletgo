@@ -6,7 +6,6 @@ import { useAuth } from "../../../context/authContext";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import "../../../styles/form.css";
-import { format } from "date-fns";
 import Swal from "sweetalert2";
 
 function FormIncomes() {
@@ -43,7 +42,6 @@ function FormIncomes() {
     getIncome();
     getCategory();
   }, []);
-
   useEffect(() => {
     setFilteredIncomes(incomes);
   }, [incomes]);

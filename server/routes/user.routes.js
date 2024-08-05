@@ -7,6 +7,6 @@ router.post("/signup", UserController.createUser); // Register
 router.post("/login", UserController.signin); // Login
 router.get("/verify", UserController.validationToken); // Validation token
 router.post("/logout", UserController.logout); // Logout
-router.delete("/delete", UserController.deleteUser); // Delete user
+router.delete("/delete/:id", UserController.deleteUser); //Delete User
 
 export default router;
